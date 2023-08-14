@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/client.dir/client.cc.o CMakeFiles/client.dir/IO.cc.o -o client  /usr/lib/x86_64-linux-gnu/libhiredis.so 
