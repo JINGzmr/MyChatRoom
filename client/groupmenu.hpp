@@ -350,7 +350,6 @@ void managegroup_client(int client_socket, string id, Queue<string> &RecvQue)
             break;
         default:
             cout << "无效的数字，请重新输入！" << endl;
-            manegegroupUI();
             break;
         }
     } while (num__ != 25); // 退出循环，返回上一级
