@@ -18,7 +18,7 @@
 int main(int argc, char *argv[])
 {
     // 忽略SIGINT和SIGTSTP信号
-    signal(SIGINT, SIG_IGN); // 忽略Ctrl+C
+    // signal(SIGINT, SIG_IGN); // 忽略Ctrl+C
     // signal(SIGTSTP, SIG_IGN); // 忽略Ctrl+Z
 
     // 默认值
@@ -63,6 +63,8 @@ int main(int argc, char *argv[])
     }
     std::cout << connect_result << std::endl;
     std::cout << "欢迎来到私人聊天室" << std::endl;
+
+
 
     // 进入登录界面
     menu(client_socket);

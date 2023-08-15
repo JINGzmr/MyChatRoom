@@ -31,8 +31,10 @@ void group_client(int client_socket, string id, Queue<string> &RecvQue);
 
 void personalmenuUI(void)
 {
+    pid_t pid = getpid();
     cout << "————————————————————————————————————————————————————" << endl;
     cout << "---------------------  聊天室  --------------------" << endl;
+    cout << "------------------ PID= " << pid << " ----------------------" <<endl;
     cout << "——————————————————————————————————————————————————" << endl;
     cout << "                      4.添加好友                   " << endl;
     cout << "                      5.编辑好友申请                " << endl;
@@ -670,8 +672,9 @@ string historychat_client(int client_socket, string id, Queue<string> &RecvQue, 
         cout << "按'q'返回上一级" << endl;
         string a;
         while ((a = getInputWithoutCtrlD()) != "q")
-        {}
-            str = "fail";
+        {
+        }
+        str = "fail";
     }
 
     return str; // 返回所选择的好友昵称
@@ -750,8 +753,8 @@ void personalinfo_client(int client_socket, string id, Queue<string> &RecvQue)
     // 打印个人信息
     cout << "用户名：" << user.username << endl;
     cout << "id：" << id << endl;
-    cout << "密码：" << user.password << endl;
-    cout << "密保：" << user.secrecy << endl;
+    cout << "密码：***" << endl;
+    cout << "密保：*** " << endl;
 
     cout << "按'q'返回上一级" << endl;
     string a;

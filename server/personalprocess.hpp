@@ -425,7 +425,7 @@ void blackfriendlist_server(int fd, string buf)
     {
         // 得到发送请求的用户id
         string bfriend_id = arry[i]->str;
-        if (redis.hashexists("userinfo", bfriend_id) != 1) // id不存在，说明该用户已经注销了
+        if (redis.hashexists("userinfo", bfriend_id) != 1|| redis.sismember(friend_.id+":friends",bfriend_id)!=1) // id不存在，说明该用户已经注销了
             continue;
 
         string name = redis.gethash("id_name", bfriend_id); // 拿着id去找username
