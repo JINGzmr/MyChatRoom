@@ -2,10 +2,10 @@
 #ifndef PERSONALPROCESS_HPP
 #define PERSONALPROCESS_HPP
 
-#include "data.h"
-#include "define.h"
-#include "IO.h"
-#include "redis.hpp"
+#include "../others/data.h"
+#include "../others/define.h"
+#include "../others/IO.h"
+#include "../others/redis.hpp"
 #include <vector>
 
 #include <iostream>
@@ -70,7 +70,7 @@ void logout_server(int fd, string buf)
     userjson_string = parsed_data.dump();
     redis.hsetValue("userinfo", id, userjson_string);
     redis.sremvalue("onlinelist", id); // 把用户从在线列表中移除
-    redis.hashdel("usersocket_id", redis.gethash("usersocket",id));
+    redis.hashdel("usersocket_id", redis.gethash("usersocket", id));
     redis.hashdel("usersocket", id); // 把用户的套接字移除
 
     // 发送状态和信息类型
@@ -251,7 +251,7 @@ void friendapplyedit_server(int fd, string buf)
             friend_.state = SUCCESS;
             friend_.type = NORMAL;
         }
-        else if(state == "2")
+        else if (state == "2")
         {
             cout << "已拒绝" << endl;
             redis.sremvalue(key, applyfriend_id); // 从申请列表中移除
@@ -330,7 +330,7 @@ void addblack_server(int fd, string buf)
     friend_.oppoid = parsed_data["oppoid"];
     printf("--- %s 用户将要屏蔽好友 ---\n", friend_.id.c_str());
 
-    Redis redis;
+    Redis redis; 
     redis.connect();
 
     string key = friend_.id + ":bfriends";
@@ -650,6 +650,34 @@ void chatfriend_server(int fd, string buf)
     }
 
     cout << "here" << endl;
+}
+
+// 个人信息
+void personalinfo_server(int fd, string buf)
+{
+    json parsed_data = json::parse(buf);
+    struct Friend friend_;
+    friend_.id = parsed_data["id"];
+    printf("--- %s 用户查看个人信息 ---\n", friend_.id.c_str());
+
+    Redis redis;
+    redis.connect();
+
+    string userjson_string;
+    userjson_string = redis.gethash("userinfo", friend_.id);
+    parsed_data = json::parse(userjson_string);
+
+    // 发送状态和信息类型
+    nlohmann::json json_ = {
+        {"type", NORMAL},
+        {"flag", 0},
+        {"username", parsed_data["username"]},
+        {"password", parsed_data["password"]},
+        {"secrecy", parsed_data["secrecy"]},
+    };
+    string json_string = json_.dump();
+    SendMsg sendmsg;
+    sendmsg.SendMsg_client(fd, json_string);
 }
 
 #endif

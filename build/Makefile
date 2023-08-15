@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3
+CMAKE_SOURCE_DIR = /home/zhangminrui/桌面/chatroom
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build
+CMAKE_BINARY_DIR = /home/zhangminrui/桌面/chatroom/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhangminrui/桌面/chatroom/build/CMakeFiles /home/zhangminrui/桌面/chatroom/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhangminrui/桌面/chatroom/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,104 +142,104 @@ server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
-IO.o: IO.cc.o
-.PHONY : IO.o
+client/client.o: client/client.cc.o
+.PHONY : client/client.o
 
 # target to build an object file
-IO.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/IO.cc.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/IO.cc.o
-.PHONY : IO.cc.o
+client/client.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client/client.cc.o
+.PHONY : client/client.cc.o
 
-IO.i: IO.cc.i
-.PHONY : IO.i
+client/client.i: client/client.cc.i
+.PHONY : client/client.i
 
 # target to preprocess a source file
-IO.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/IO.cc.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/IO.cc.i
-.PHONY : IO.cc.i
+client/client.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client/client.cc.i
+.PHONY : client/client.cc.i
 
-IO.s: IO.cc.s
-.PHONY : IO.s
+client/client.s: client/client.cc.s
+.PHONY : client/client.s
 
 # target to generate assembly for a file
-IO.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/IO.cc.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/IO.cc.s
-.PHONY : IO.cc.s
+client/client.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client/client.cc.s
+.PHONY : client/client.cc.s
 
-client.o: client.cc.o
-.PHONY : client.o
+others/IO.o: others/IO.cc.o
+.PHONY : others/IO.o
 
 # target to build an object file
-client.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cc.o
-.PHONY : client.cc.o
+others/IO.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/others/IO.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/others/IO.cc.o
+.PHONY : others/IO.cc.o
 
-client.i: client.cc.i
-.PHONY : client.i
+others/IO.i: others/IO.cc.i
+.PHONY : others/IO.i
 
 # target to preprocess a source file
-client.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cc.i
-.PHONY : client.cc.i
+others/IO.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/others/IO.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/others/IO.cc.i
+.PHONY : others/IO.cc.i
 
-client.s: client.cc.s
-.PHONY : client.s
+others/IO.s: others/IO.cc.s
+.PHONY : others/IO.s
 
 # target to generate assembly for a file
-client.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client.cc.s
-.PHONY : client.cc.s
+others/IO.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/others/IO.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/others/IO.cc.s
+.PHONY : others/IO.cc.s
 
-server.o: server.cc.o
-.PHONY : server.o
+others/threadpool.o: others/threadpool.cc.o
+.PHONY : others/threadpool.o
 
 # target to build an object file
-server.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cc.o
-.PHONY : server.cc.o
+others/threadpool.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/others/threadpool.cc.o
+.PHONY : others/threadpool.cc.o
 
-server.i: server.cc.i
-.PHONY : server.i
+others/threadpool.i: others/threadpool.cc.i
+.PHONY : others/threadpool.i
 
 # target to preprocess a source file
-server.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cc.i
-.PHONY : server.cc.i
+others/threadpool.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/others/threadpool.cc.i
+.PHONY : others/threadpool.cc.i
 
-server.s: server.cc.s
-.PHONY : server.s
+others/threadpool.s: others/threadpool.cc.s
+.PHONY : others/threadpool.s
 
 # target to generate assembly for a file
-server.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cc.s
-.PHONY : server.cc.s
+others/threadpool.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/others/threadpool.cc.s
+.PHONY : others/threadpool.cc.s
 
-threadpool.o: threadpool.cc.o
-.PHONY : threadpool.o
+server/server.o: server/server.cc.o
+.PHONY : server/server.o
 
 # target to build an object file
-threadpool.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/threadpool.cc.o
-.PHONY : threadpool.cc.o
+server/server.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/server.cc.o
+.PHONY : server/server.cc.o
 
-threadpool.i: threadpool.cc.i
-.PHONY : threadpool.i
+server/server.i: server/server.cc.i
+.PHONY : server/server.i
 
 # target to preprocess a source file
-threadpool.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/threadpool.cc.i
-.PHONY : threadpool.cc.i
+server/server.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/server.cc.i
+.PHONY : server/server.cc.i
 
-threadpool.s: threadpool.cc.s
-.PHONY : threadpool.s
+server/server.s: server/server.cc.s
+.PHONY : server/server.s
 
 # target to generate assembly for a file
-threadpool.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/threadpool.cc.s
-.PHONY : threadpool.cc.s
+server/server.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/server.cc.s
+.PHONY : server/server.cc.s
 
 # Help Target
 help:
@@ -251,18 +251,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... client"
 	@echo "... server"
-	@echo "... IO.o"
-	@echo "... IO.i"
-	@echo "... IO.s"
-	@echo "... client.o"
-	@echo "... client.i"
-	@echo "... client.s"
-	@echo "... server.o"
-	@echo "... server.i"
-	@echo "... server.s"
-	@echo "... threadpool.o"
-	@echo "... threadpool.i"
-	@echo "... threadpool.s"
+	@echo "... client/client.o"
+	@echo "... client/client.i"
+	@echo "... client/client.s"
+	@echo "... others/IO.o"
+	@echo "... others/IO.i"
+	@echo "... others/IO.s"
+	@echo "... others/threadpool.o"
+	@echo "... others/threadpool.i"
+	@echo "... others/threadpool.s"
+	@echo "... server/server.o"
+	@echo "... server/server.i"
+	@echo "... server/server.s"
 .PHONY : help
 
 

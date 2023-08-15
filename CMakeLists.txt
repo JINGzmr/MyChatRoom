@@ -6,34 +6,34 @@ cmake_minimum_required(VERSION 3.10)
 
 # 添加可执行文件 "client" 并指定源文件
 add_executable(client 
-    client.cc 
-    menu.hpp 
-    data.h 
-    define.h 
-    head.h 
-    IO.h 
-    personalmenu.hpp 
-    IO.cc
-    threadwork.hpp
-    queue.hpp
-    groupmenu.hpp
-    managegroupmenu.hpp
+    client/client.cc 
+    client/menu.hpp 
+    others/data.h 
+    others/define.h 
+    others/head.h 
+    others/IO.h 
+    client/personalmenu.hpp 
+    others/IO.cc
+    others/threadwork.hpp
+    others/queue.hpp
+    client/groupmenu.hpp
+    client/managegroupmenu.hpp
 )
 
 # 添加可执行文件 "server" 并指定源文件
 add_executable(server 
-    server.cc 
-    threadpool.h 
-    threadpool.cc 
-    IO.h 
-    IO.cc 
-    data.h 
-    define.h 
-    login.hpp
-    redis.hpp
-    personalprocess.hpp
-    groupprocess.hpp
-    managegroupprocess.hpp
+    server/server.cc 
+    others/threadpool.h 
+    others/threadpool.cc 
+    others/IO.h 
+    others/IO.cc 
+    others/data.h 
+    others/define.h 
+    server/login.hpp
+    others/redis.hpp
+    server/personalprocess.hpp
+    server/groupprocess.hpp
+    server/managegroupprocess.hpp
 )
 
 # 添加链接库

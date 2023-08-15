@@ -8,8 +8,7 @@
 using namespace std;
 
 // int epld;
-
-// string chatid = "";
+ 
 string chatname = "";
 string chatgroup = "";
 
@@ -19,6 +18,7 @@ struct User
     int flag;        // 标记选项
     string username; // 用户名（独一无二）
     string password; // 密码
+    string secrecy;  // 密保
     string id;       // 服务器随机生成的id（独一无二）--->使用户更改用户名的时候，该用户的数据不变
     int status;      // 标记从服务器返回的状态（成功SUCCESS，失败FAIL）
     int online;      // 是否在线（在线ONLINE，不在OFFLINE）
@@ -72,7 +72,7 @@ string produce_id(void)
     return id;
 }
 
-// 屏蔽ctrl的输入函数
+// 屏蔽ctrl+d的输入函数
 string getInputWithoutCtrlD() {
     struct termios oldt, newt;
 
@@ -100,7 +100,7 @@ string getInputWithoutCtrlD() {
         } else if (ch == 127) { // Backspace
             if (!input.empty()) {
                 input.pop_back();
-                std::cout << "\b \b"; // 清除前一个字符并移动光标
+                cout << "\b \b"; // 清除前一个字符并移动光标
             }
         } else {
             cout << ch; // 输出字符到终端
@@ -126,7 +126,7 @@ int checkcin(const string &str)
     try
     {
         size_t pos;
-        int result = std::stoi(str, &pos);
+        int result = stoi(str, &pos);
 
         // 确保整个字符串都被转换
         if (pos == str.length())
@@ -138,11 +138,11 @@ int checkcin(const string &str)
             return -1;
         }
     }
-    catch (const std::invalid_argument &)
+    catch (const invalid_argument &)
     {
         return -1; // 无法转换成数字
     }
-    catch (const std::out_of_range &)
+    catch (const out_of_range &)
     {
         return -1; // 数字超出范围
     }

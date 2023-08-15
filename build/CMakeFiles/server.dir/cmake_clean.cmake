@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/server.dir/IO.cc.o"
-  "CMakeFiles/server.dir/IO.cc.o.d"
-  "CMakeFiles/server.dir/server.cc.o"
-  "CMakeFiles/server.dir/server.cc.o.d"
-  "CMakeFiles/server.dir/threadpool.cc.o"
-  "CMakeFiles/server.dir/threadpool.cc.o.d"
+  "CMakeFiles/server.dir/others/IO.cc.o"
+  "CMakeFiles/server.dir/others/IO.cc.o.d"
+  "CMakeFiles/server.dir/others/threadpool.cc.o"
+  "CMakeFiles/server.dir/others/threadpool.cc.o.d"
+  "CMakeFiles/server.dir/server/server.cc.o"
+  "CMakeFiles/server.dir/server/server.cc.o.d"
   "server"
   "server.pdb"
 )

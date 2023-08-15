@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3
+CMAKE_SOURCE_DIR = /home/zhangminrui/桌面/chatroom
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build
+CMAKE_BINARY_DIR = /home/zhangminrui/桌面/chatroom/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/client.dir/depend.make
@@ -69,48 +69,48 @@ include CMakeFiles/client.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/client.dir/flags.make
 
-CMakeFiles/client.dir/client.cc.o: CMakeFiles/client.dir/flags.make
-CMakeFiles/client.dir/client.cc.o: ../client.cc
-CMakeFiles/client.dir/client.cc.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/client.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client.cc.o -MF CMakeFiles/client.dir/client.cc.o.d -o CMakeFiles/client.dir/client.cc.o -c /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/client.cc
+CMakeFiles/client.dir/client/client.cc.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/client/client.cc.o: ../client/client.cc
+CMakeFiles/client.dir/client/client.cc.o: CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhangminrui/桌面/chatroom/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/client/client.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client.cc.o -MF CMakeFiles/client.dir/client/client.cc.o.d -o CMakeFiles/client.dir/client/client.cc.o -c /home/zhangminrui/桌面/chatroom/client/client.cc
 
-CMakeFiles/client.dir/client.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/client.cc > CMakeFiles/client.dir/client.cc.i
+CMakeFiles/client.dir/client/client.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/client.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhangminrui/桌面/chatroom/client/client.cc > CMakeFiles/client.dir/client/client.cc.i
 
-CMakeFiles/client.dir/client.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/client.cc -o CMakeFiles/client.dir/client.cc.s
+CMakeFiles/client.dir/client/client.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhangminrui/桌面/chatroom/client/client.cc -o CMakeFiles/client.dir/client/client.cc.s
 
-CMakeFiles/client.dir/IO.cc.o: CMakeFiles/client.dir/flags.make
-CMakeFiles/client.dir/IO.cc.o: ../IO.cc
-CMakeFiles/client.dir/IO.cc.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/IO.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/IO.cc.o -MF CMakeFiles/client.dir/IO.cc.o.d -o CMakeFiles/client.dir/IO.cc.o -c /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/IO.cc
+CMakeFiles/client.dir/others/IO.cc.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/others/IO.cc.o: ../others/IO.cc
+CMakeFiles/client.dir/others/IO.cc.o: CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhangminrui/桌面/chatroom/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/others/IO.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/others/IO.cc.o -MF CMakeFiles/client.dir/others/IO.cc.o.d -o CMakeFiles/client.dir/others/IO.cc.o -c /home/zhangminrui/桌面/chatroom/others/IO.cc
 
-CMakeFiles/client.dir/IO.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/IO.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/IO.cc > CMakeFiles/client.dir/IO.cc.i
+CMakeFiles/client.dir/others/IO.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/others/IO.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhangminrui/桌面/chatroom/others/IO.cc > CMakeFiles/client.dir/others/IO.cc.i
 
-CMakeFiles/client.dir/IO.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/IO.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/IO.cc -o CMakeFiles/client.dir/IO.cc.s
+CMakeFiles/client.dir/others/IO.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/others/IO.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhangminrui/桌面/chatroom/others/IO.cc -o CMakeFiles/client.dir/others/IO.cc.s
 
 # Object files for target client
 client_OBJECTS = \
-"CMakeFiles/client.dir/client.cc.o" \
-"CMakeFiles/client.dir/IO.cc.o"
+"CMakeFiles/client.dir/client/client.cc.o" \
+"CMakeFiles/client.dir/others/IO.cc.o"
 
 # External object files for target client
 client_EXTERNAL_OBJECTS =
 
-client: CMakeFiles/client.dir/client.cc.o
-client: CMakeFiles/client.dir/IO.cc.o
+client: CMakeFiles/client.dir/client/client.cc.o
+client: CMakeFiles/client.dir/others/IO.cc.o
 client: CMakeFiles/client.dir/build.make
 client: /usr/lib/x86_64-linux-gnu/libhiredis.so
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhangminrui/桌面/chatroom/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -122,6 +122,6 @@ CMakeFiles/client.dir/clean:
 .PHONY : CMakeFiles/client.dir/clean
 
 CMakeFiles/client.dir/depend:
-	cd /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3 /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3 /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build /home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles/client.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/zhangminrui/桌面/chatroom/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zhangminrui/桌面/chatroom /home/zhangminrui/桌面/chatroom /home/zhangminrui/桌面/chatroom/build /home/zhangminrui/桌面/chatroom/build /home/zhangminrui/桌面/chatroom/build/CMakeFiles/client.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/client.dir/depend
 

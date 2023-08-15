@@ -8,8 +8,8 @@
 
 #include "head.h"
 #include "queue.hpp"
-#include "define.h"
-#include "data.h"
+#include "../others/define.h"
+#include "../others/data.h"
 
 // 根据type来决定是否将受到的recvjson_buf放入消息队列里
 // type：普通normal、通知notice
@@ -80,7 +80,7 @@ void recvfunc(int fd, string id, Queue<string> *RecvQue)
         }
         else if (type == NORMAL)
         {
-            cout << "\033[30;1m（ 一条消息放入消息队列 ）\033[0m" << endl; // 深灰色
+            // cout << "\033[30;1m（ 一条消息放入消息队列 ）\033[0m" << endl; // 深灰色
             RecvQue->add(recvJson_buf);
         }
         // cout << "3" << endl;

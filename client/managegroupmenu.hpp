@@ -2,12 +2,12 @@
 #ifndef MANAGEGROUPMENU_HPP
 #define MANAGEGROUPMENU_HPP
 
-#include "data.h"
-#include "define.h"
-#include "head.h"
-#include "IO.h"
+#include "../others/data.h"
+#include "../others/define.h"
+#include "../others/head.h"
+#include "../others/IO.h"
 #include "menu.hpp"
-#include "threadwork.hpp"
+#include "../others/threadwork.hpp"
 #include "groupmenu.hpp"
 
 #include <iostream>

@@ -4,7 +4,7 @@
 // 无重复，按字典序：sadd
 // 可重复，按存储时间：lpush（存聊天记录刚刚好）
 
-#include "define.h"
+#include "../others/define.h"
 
 #include <hiredis/hiredis.h>
 #include <string>

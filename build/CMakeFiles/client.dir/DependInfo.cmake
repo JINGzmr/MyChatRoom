@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/IO.cc" "CMakeFiles/client.dir/IO.cc.o" "gcc" "CMakeFiles/client.dir/IO.cc.o.d"
-  "/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/client.cc" "CMakeFiles/client.dir/client.cc.o" "gcc" "CMakeFiles/client.dir/client.cc.o.d"
+  "/home/zhangminrui/桌面/chatroom/client/client.cc" "CMakeFiles/client.dir/client/client.cc.o" "gcc" "CMakeFiles/client.dir/client/client.cc.o.d"
+  "/home/zhangminrui/桌面/chatroom/others/IO.cc" "CMakeFiles/client.dir/others/IO.cc.o" "gcc" "CMakeFiles/client.dir/others/IO.cc.o.d"
   )
 
 # Targets to which this target links.

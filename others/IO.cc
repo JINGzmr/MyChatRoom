@@ -1,8 +1,8 @@
-#include "IO.h"
+#include "../others/IO.h"
 #include "head.h"
-#include "define.h"
-// #include "data.h"
-// #include "redis.hpp"
+#include "../others/define.h"
+// #include "../others/data.h"
+// #include "../others/redis.hpp"
 //************爱编程的大丙——————》后期要改
 int SendMsg::writen(int fd, char *msg, int size)
 {

@@ -1,4 +1,4 @@
-/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles/client.dir
-/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles/server.dir
-/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles/edit_cache.dir
-/home/zhangminrui/桌面/ZMR-C/xiyoulinux-plan/plan7-ChatRoom/1.3/build/CMakeFiles/rebuild_cache.dir
+/home/zhangminrui/桌面/chatroom/build/CMakeFiles/client.dir
+/home/zhangminrui/桌面/chatroom/build/CMakeFiles/server.dir
+/home/zhangminrui/桌面/chatroom/build/CMakeFiles/edit_cache.dir
+/home/zhangminrui/桌面/chatroom/build/CMakeFiles/rebuild_cache.dir
