@@ -791,7 +791,7 @@ void group_client(int client_socket, string id, Queue<string> &RecvQue)
             groupmenuUI();
             break;
         case 21:
-            system("clear");
+            system("clear"); 
             checkgroupnum_client(client_socket, id, RecvQue, 1);
             system("clear");
             groupmenuUI();
