@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/server.dir/server/server.cc.o CMakeFiles/server.dir/others/threadpool.cc.o CMakeFiles/server.dir/others/IO.cc.o -o server  /usr/lib/x86_64-linux-gnu/libhiredis.so 
