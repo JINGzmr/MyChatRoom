@@ -8,6 +8,7 @@
 #include "personalprocess.hpp"
 #include "groupprocess.hpp"
 #include "managegroupprocess.hpp"
+#include "fileprocess.hpp"
 
 #include <iostream>
 #include <string>
@@ -227,133 +228,152 @@ void work(void *arg)
     int flag_ = parsed_data["flag"];
 
     // 根据接收到的消息判断用户在登录界面的操作
-    if (flag_ == LOGIN) // 登录
+    // if (flag_ != SENDFILE || flag_ != RECVFILE)
     {
-        login_server(fd, recvJson_buf);
-    }
-    else if (flag_ == REGISTER) // 注册
-    {
-        register_server(fd, recvJson_buf);
-    }
-    else if (flag_ == SIGNOUT) // 注销
-    {
-        signout_server(fd, recvJson_buf);
-    }
-    else if (flag_ == FINDPASSWORD) // 找回密码
-    {
-        findpassword_server(fd, recvJson_buf);
-    }
-    else if (flag_ == OUT) // 退出
-    {
-        close(fd); // 和退出的客户端断开连接
-        return;
-    }
-    else if (flag_ == SHOUNOTICE) // 展示离线消息
-    {
-        showunreadnotice_server(fd, recvJson_buf);
-    }
-    else if (flag_ == LOGOUT) // 退出登录
-    {
-        logout_server(fd, recvJson_buf);
-    }
-    else if (flag_ == ADDFRIEND)
-    {
-        addfriend_server(fd, recvJson_buf);
-    }
-    else if (flag_ == FRIENDAPPLYLIST)
-    {
-        friendapplylist_server(fd, recvJson_buf);
-    }
-    else if (flag_ == FRIENDAPPLYEDIT)
-    {
-        friendapplyedit_server(fd, recvJson_buf);
-    }
-    else if (flag_ == FRIENDINFO)
-    {
-        friendinfo_server(fd, recvJson_buf);
-    }
-    else if (flag_ == ADDBLACK)
-    {
-        addblack_server(fd, recvJson_buf);
-    }
-    else if (flag_ == DELFRIEND)
-    {
-        delfriend_server(fd, recvJson_buf);
-    }
-    else if (flag_ == BLACKFRIENDLIST)
-    {
-        blackfriendlist_server(fd, recvJson_buf);
-    }
-    else if (flag_ == BLACKFRIENDEDIT)
-    {
-        blackfriendedit_server(fd, recvJson_buf);
-    }
-    else if (flag_ == HISTORYCHAT)
-    {
-        historychat_server(fd, recvJson_buf);
-    }
-    else if (flag_ == CHATFRIEND)
-    {
-        chatfriend_server(fd, recvJson_buf);
-    }
-    else if (flag_ == PERSONALINFO)
-    {
-        personalinfo_server(fd, recvJson_buf);
-    }
-    else if (flag_ == CREATGROUP)
-    {
-        creatgroup_server(fd, recvJson_buf);
-    }
-    else if (flag_ == ADDGROUP)
-    {
-        addgroup_server(fd, recvJson_buf);
-    }
-    else if (flag_ == CHECKGROUP)
-    {
-        checkgroup_server(fd, recvJson_buf);
-    }
-    else if (flag_ == OUTGROUP)
-    {
-        outgroup_server(fd, recvJson_buf);
-    }
-    else if (flag_ == CHECKGROUPNUM)
-    {
-        checkgroupnum_server(fd, recvJson_buf);
-    }
-    else if (flag_ == ADDADMIN)
-    {
-        addmin_server(fd, recvJson_buf);
-    }
-    else if (flag_ == DELADMIN)
-    {
-        deladmin_server(fd, recvJson_buf);
-    }
-    else if (flag_ == CHECKAPPLYLIST)
-    {
-        checkapplylist_server(fd, recvJson_buf);
-    }
-    else if (flag_ == AGREEAPPLY)
-    {
-        agreeapply_server(fd, recvJson_buf);
-    }
-    else if (flag_ == DELGROUPNUM)
-    {
-        delgroupnum_server(fd, recvJson_buf);
-    }
-    else if (flag_ == DELGROUP)
-    {
-        delgroup_server(fd, recvJson_buf);
-    }
-    else if (flag_ == HISTORYGROUPCHAT)
-    {
-        historygroupchat_server(fd, recvJson_buf);
-    }
-    else if (flag_ == GROUPCHAT)
-    {
-        groupchat_server(fd, recvJson_buf);
+        if (flag_ == LOGIN) // 登录
+        {
+            login_server(fd, recvJson_buf);
+        }
+        else if (flag_ == REGISTER) // 注册
+        {
+            register_server(fd, recvJson_buf);
+        }
+        else if (flag_ == SIGNOUT) // 注销
+        {
+            signout_server(fd, recvJson_buf);
+        }
+        else if (flag_ == FINDPASSWORD) // 找回密码
+        {
+            findpassword_server(fd, recvJson_buf);
+        }
+        else if (flag_ == OUT) // 退出
+        {
+            close(fd); // 和退出的客户端断开连接
+            return;
+        }
+        else if (flag_ == SHOUNOTICE) // 展示离线消息
+        {
+            showunreadnotice_server(fd, recvJson_buf);
+        }
+        else if (flag_ == LOGOUT) // 退出登录
+        {
+            logout_server(fd, recvJson_buf);
+        }
+        else if (flag_ == ADDFRIEND)
+        {
+            addfriend_server(fd, recvJson_buf);
+        }
+        else if (flag_ == FRIENDAPPLYLIST)
+        {
+            friendapplylist_server(fd, recvJson_buf);
+        }
+        else if (flag_ == FRIENDAPPLYEDIT)
+        {
+            friendapplyedit_server(fd, recvJson_buf);
+        }
+        else if (flag_ == FRIENDINFO)
+        {
+            friendinfo_server(fd, recvJson_buf);
+        }
+        else if (flag_ == ADDBLACK)
+        {
+            addblack_server(fd, recvJson_buf);
+        }
+        else if (flag_ == DELFRIEND)
+        {
+            delfriend_server(fd, recvJson_buf);
+        }
+        else if (flag_ == BLACKFRIENDLIST)
+        {
+            blackfriendlist_server(fd, recvJson_buf);
+        }
+        else if (flag_ == BLACKFRIENDEDIT)
+        {
+            blackfriendedit_server(fd, recvJson_buf);
+        }
+        else if (flag_ == HISTORYCHAT)
+        {
+            historychat_server(fd, recvJson_buf);
+        }
+        else if (flag_ == CHATFRIEND)
+        {
+            chatfriend_server(fd, recvJson_buf);
+        }
+        else if (flag_ == PERSONALINFO)
+        {
+            personalinfo_server(fd, recvJson_buf);
+        }
+        else if (flag_ == CREATGROUP)
+        {
+            creatgroup_server(fd, recvJson_buf);
+        }
+        else if (flag_ == ADDGROUP)
+        {
+            addgroup_server(fd, recvJson_buf);
+        }
+        else if (flag_ == CHECKGROUP)
+        {
+            checkgroup_server(fd, recvJson_buf);
+        }
+        else if (flag_ == OUTGROUP)
+        {
+            outgroup_server(fd, recvJson_buf);
+        }
+        else if (flag_ == CHECKGROUPNUM)
+        {
+            checkgroupnum_server(fd, recvJson_buf);
+        }
+        else if (flag_ == ADDADMIN)
+        {
+            addmin_server(fd, recvJson_buf);
+        }
+        else if (flag_ == DELADMIN)
+        {
+            deladmin_server(fd, recvJson_buf);
+        }
+        else if (flag_ == CHECKAPPLYLIST)
+        {
+            checkapplylist_server(fd, recvJson_buf);
+        }
+        else if (flag_ == AGREEAPPLY)
+        {
+            agreeapply_server(fd, recvJson_buf);
+        }
+        else if (flag_ == DELGROUPNUM)
+        {
+            delgroupnum_server(fd, recvJson_buf);
+        }
+        else if (flag_ == DELGROUP)
+        {
+            delgroup_server(fd, recvJson_buf);
+        }
+        else if (flag_ == HISTORYGROUPCHAT)
+        {
+            historygroupchat_server(fd, recvJson_buf);
+        }
+        else if (flag_ == GROUPCHAT)
+        {
+            groupchat_server(fd, recvJson_buf);
+        }
+
+        // 当前任务都处理完了（或出问题）之后，再挂树
+        // epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);
     }
 
-    // 当前任务都处理完了（或出问题）之后，再挂树
+    // 发送接受文件专门的线程，需要多次接收文件（因为fd已经摘树了，该客户端发送的文件就都会被改线程锁接收）
+    // 可能要改变此时该客户端的模式，由非阻塞->阻塞
+    // else
+    {
+        if(flag_ == SENDFILE)//客户端发送文件，服务端调用接收文件的函数
+        {
+            recvfile_server(fd, recvJson_buf);
+        }
+        else if(flag_ == RECVFILE)
+        {
+            sendfile_server(fd, recvJson_buf);
+        }
+    }
+
     epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);
     return;
 }

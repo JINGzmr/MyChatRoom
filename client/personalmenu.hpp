@@ -9,6 +9,7 @@
 #include "menu.hpp"
 #include "../others/threadwork.hpp"
 #include "groupmenu.hpp"
+#include "filemenu.hpp"
 
 #include <iostream>
 using json = nlohmann::json;
@@ -28,6 +29,7 @@ string historychat_client(int client_socket, string id, Queue<string> &RecvQue, 
 void chatfriend_client(int client_socket, string id, Queue<string> &RecvQue);
 void personalinfo_client(int client_socket, string id, Queue<string> &RecvQue);
 void group_client(int client_socket, string id, Queue<string> &RecvQue);
+void file_client(int client_socket, string id, Queue<string> &RecvQue);
 
 void personalmenuUI(void)
 {
@@ -44,7 +46,7 @@ void personalmenuUI(void)
     cout << "                      6.屏蔽好友                   " << endl;
     cout << "                      7.删除好友                   " << endl;
     cout << "                      8.查看屏蔽好友列表             " << endl;
-    cout << "                      9.编辑屏蔽好友              " << endl;
+    cout << "                      9.编辑屏蔽好友                " << endl;
     cout << "                      10.个人信息                   " << endl;
     cout << "--------------------------------------------------" << endl;
     cout << "                      11.群聊                      " << endl;
@@ -141,9 +143,12 @@ void messagemenu(int client_socket, string id, Queue<string> &RecvQue)
             system("clear");
             personalmenuUI();
             break;
-        // case 12:
-
-        //     break;
+        case 12:
+            system("clear");
+            file_client(client_socket, id, RecvQue);
+            system("clear");
+            personalmenuUI();
+            break;
         case 13:
             logout_client(client_socket, id);
             break;
@@ -838,6 +843,42 @@ void group_client(int client_socket, string id, Queue<string> &RecvQue)
             break;
         }
     } while (num_ != 9); // 退出循环，返回上一级
+
+    system("clear");
+    return;
+}
+
+// 文件传输
+void file_client(int client_socket, string id, Queue<string> &RecvQue)
+{
+    system("clear");
+    filemenuUI();
+
+    int num_ = 1;
+    do
+    {
+        // 清空缓冲区
+        std::cin.clear();
+        std::cin.sync();
+
+        string str = getInputWithoutCtrlD();
+        num_ = checkcin(str);
+
+        switch (num_)
+        {
+        case 1:
+            system("clear");
+            sendfile_client(client_socket, id, RecvQue);
+            filemenuUI();
+            break;
+        case 2:
+            system("clear");
+            recvfile_client(client_socket, id, RecvQue);
+            // system("clear");
+            filemenuUI();
+            break;
+        }
+    } while (num_ != 3); // 退出循环，返回上一级
 
     system("clear");
     return;

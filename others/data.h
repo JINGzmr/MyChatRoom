@@ -8,7 +8,7 @@
 using namespace std;
 
 // int epld;
- 
+
 string chatname = "";
 string chatgroup = "";
 
@@ -63,6 +63,20 @@ struct Group
     int state;              // 标记状态
 };
 
+// 文件
+struct File
+{
+    int type;        // 标记事件类型
+    int flag;        // 标记选项
+    string id;       // 发送文件的用户id
+    string oppoid;   // 接收文件的用户id
+    string filename; // 文件名
+    string filepath; // 文件路径名
+    off_t filesize;  // 文件大小
+    string msg;      // 通知消息
+    int state;       // 标记状态
+};
+
 // 根据时间分配id的函数
 string produce_id(void)
 {
@@ -73,7 +87,8 @@ string produce_id(void)
 }
 
 // 屏蔽ctrl+d的输入函数
-string getInputWithoutCtrlD() {
+string getInputWithoutCtrlD()
+{
     struct termios oldt, newt;
 
     // 获取当前终端模式
@@ -88,21 +103,32 @@ string getInputWithoutCtrlD() {
 
     std::string input;
     char ch;
-    while (std::cin.get(ch)) {
-        if (ch == '\x04') {  // Ctrl+D
-            // 不做任何响应
-        } else if (ch == '\n') {
+    while (std::cin.get(ch))
+    {
+        if (ch == '\x04')
+        { // Ctrl+D
+          // 不做任何响应
+        }
+        else if (ch == '\n')
+        {
             cout << ch;
-            break;  // 回车表示输入结束
-        } else if (ch == 27) { // Esc
+            break; // 回车表示输入结束
+        }
+        else if (ch == 27)
+        { // Esc
             cout << "esc" << endl;
             return "esc";
-        } else if (ch == 127) { // Backspace
-            if (!input.empty()) {
+        }
+        else if (ch == 127)
+        { // Backspace
+            if (!input.empty())
+            {
                 input.pop_back();
                 cout << "\b \b"; // 清除前一个字符并移动光标
             }
-        } else {
+        }
+        else
+        {
             cout << ch; // 输出字符到终端
             input += ch;
         }
@@ -112,9 +138,10 @@ string getInputWithoutCtrlD() {
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
     // 检查输入是否包含空格
-    if (input.find(' ') != std::string::npos) {
-        cout << "\033[31m警告：输入不能包含空格，请重新输入\033[0m\n"; //红色告示
-        return ""; // 返回一个空字符串表示输入无效
+    if (input.find(' ') != std::string::npos)
+    {
+        cout << "\033[31m警告：输入不能包含空格，请重新输入\033[0m\n"; // 红色告示
+        return "";                                                     // 返回一个空字符串表示输入无效
     }
 
     return input;

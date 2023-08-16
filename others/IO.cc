@@ -182,7 +182,7 @@ int RecvMsg::RecvMsg_client(int client_socket, string &str)
   data[len] = '\0';
   str = data;
 
-  return 0;
+  return Len;
 }
 
 // // 服务端接收序列化的数据

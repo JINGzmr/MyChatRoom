@@ -17,7 +17,10 @@
 #include <cstdlib> //system("clear");
 #include <thread> 
 #include <termios.h> //屏蔽ctrl+d
-// #include <ncurses.h> //关联f11，表示退出聊天
+// #include <libgen.h> // 由文件路径获取文件名的basename()函数
+#include <fcntl.h>
+#include <sys/sendfile.h>
+#include <sys/stat.h>
 
 #include <cstring>     //memset
 #include <arpa/inet.h> //htonl

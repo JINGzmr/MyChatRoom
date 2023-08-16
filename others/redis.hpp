@@ -44,6 +44,8 @@ using namespace std;
 // id+:mycreatgroup,groupid：id对应用户创建的群聊
 // id+:myadmingroup,groupid：id对应用户管理的群聊(不包括群主)
 
+// id1+to+id2+:file：1给2发的文件，在用户2中可以查看
+
 
 // list表中：
 // 历史消息：小的id+大的id+:historychat为键，消息的结构体为值

@@ -49,6 +49,9 @@ const int BUFFER_SIZE = 10240; // 缓冲区的大小（用于存储recv来的序
 #define DELGROUPNUM 29     // 删除群成员
 #define DELGROUP 30        // 解散群组
 
+#define SENDFILE 31 // 发送文件
+#define RECVFILE 32 // 接收文件
+
 #define LOGOUT 15     // 退出登录
 #define REFRESH 16    // 刷新页面
 #define BACK 25       // 返回上一级
