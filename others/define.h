@@ -19,6 +19,7 @@ const int BUFFER_SIZE = 10240; // 缓冲区的大小（用于存储recv来的序
 #define LOGIN 1            // 登录请求
 #define REGISTER 2         // 注册请求
 #define SIGNOUT 3          // 注销请求
+#define OUT 35             // 退出
 
 #define ADDFRIEND 4         // 添加好友
 #define FRIENDAPPLYLIST 51  // 查看好友申请列表

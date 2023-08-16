@@ -20,7 +20,7 @@ class RecvMsg
 {
 public:
     int readn(int fd, char *buf, int size);
-    void RecvMsg_client(int client_socket, std::string &str);
+    int RecvMsg_client(int client_socket, std::string &str);
     // void RecvMsg_server(int client_socket, std::string &str);
     int RecvMsg_int(int client_socket);
 };

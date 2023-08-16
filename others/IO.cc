@@ -1,8 +1,6 @@
 #include "../others/IO.h"
 #include "head.h"
 #include "../others/define.h"
-// #include "../others/data.h"
-// #include "../others/redis.hpp"
 //************——————》后期要改
 int SendMsg::writen(int fd, char *msg, int size)
 {
@@ -30,7 +28,7 @@ int SendMsg::writen(int fd, char *msg, int size)
 }
 
 // 客户端发送序列化好的数据
-void SendMsg::SendMsg_client(int client_socket, const std::string &str)
+void SendMsg::SendMsg_client(int client_socket, const string &str)
 {
   // int DataSize = htonl(str.length()); // 发给服务端的包的大小
 
@@ -133,7 +131,7 @@ int RecvMsg::readn(int fd, char *buf, int size)
 }
 
 // 客户端接收序列化的数据
-void RecvMsg::RecvMsg_client(int client_socket, std::string &str)
+int RecvMsg::RecvMsg_client(int client_socket, string &str)
 {
   // int DataSize = 0; // 从服务端发送过来的包的大小
   // char buffer[BUFFER_SIZE];
@@ -170,20 +168,12 @@ void RecvMsg::RecvMsg_client(int client_socket, std::string &str)
   int len = 0;
   readn(client_socket, (char *)&len, 4);
   len = ntohl(len);
-  // printf("接收到的 数据块大小 %d\n",len);
   char *data = (char *)malloc(len + 1);
   int Len = readn(client_socket, data, len);
   if (Len == 0)
   {
     printf("对方断开链接\n");
-    // // 更改在线情况
-    // Redis redis;
-    // redis.connect();
-    // redis.sremvalue("onlinelist", redis.gethash("usersocket_id", to_string(client_socket)));
-
-    close(client_socket);
-    // epoll_ctl(epld, EPOLL_CTL_DEL, client_socket, 0); // 从epoll里面删除，不需要再检测了
-    //  clients.earse(client_socket); // 同时把他从map里面删除
+    return -1;
   }
   else if (len != Len)
   {
@@ -191,6 +181,8 @@ void RecvMsg::RecvMsg_client(int client_socket, std::string &str)
   }
   data[len] = '\0';
   str = data;
+
+  return 0;
 }
 
 // // 服务端接收序列化的数据

@@ -22,11 +22,13 @@ using namespace std;
 void login_client(int client_socket);
 void register_client(int client_socket);
 void signout_client(int client_socket);
+void out_client(int client_socket);
 void findpassword_client(int client_socket);
 
 void menu(int client_socket)
 {
-    while (1)
+    int num;
+    do
     {
         cout << "——————————————————————————————————————————————————" << endl;
         cout << "------------------欢迎进入聊天室！-------------------" << endl;
@@ -34,6 +36,7 @@ void menu(int client_socket)
         cout << "---------------------1.登录------------------------" << endl;
         cout << "---------------------2.注册------------------------" << endl;
         cout << "---------------------3.注销------------------------" << endl;
+        cout << "---------------------4.退出------------------------" << endl;
         cout << "---------------------0.找回密码---------------------" << endl;
         cout << "——————————————————————————————————————————————————" << endl;
 
@@ -42,7 +45,7 @@ void menu(int client_socket)
         std::cin.sync();
 
         string str = getInputWithoutCtrlD();
-        int num = checkcin(str);
+        num = checkcin(str);
         switch (num)
         {
         case 1:
@@ -54,6 +57,9 @@ void menu(int client_socket)
         case 3:
             signout_client(client_socket);
             break;
+        case 4:
+            out_client(client_socket);
+            break;
         case 0:
             findpassword_client(client_socket);
             break;
@@ -61,7 +67,7 @@ void menu(int client_socket)
             cout << "无效的数字，请重新输入！" << endl;
             break;
         }
-    }
+    } while (num != 4);
 }
 
 void login_client(int client_socket)
@@ -214,6 +220,19 @@ void signout_client(int client_socket)
     }
 }
 
+void out_client(int client_socket)
+{
+    // 序列化，发送数据（不用把结构体的所有成员都序列化）
+    nlohmann::json sendJson_client = {
+        {"flag",OUT},
+    };
+    string sendJson_client_string = sendJson_client.dump();
+    SendMsg sendmsg;
+    sendmsg.SendMsg_client(client_socket, sendJson_client_string);
+
+    cout << "退出成功！"<< endl;
+}
+
 void findpassword_client(int client_socket)
 {
     User user;
@@ -256,6 +275,7 @@ void findpassword_client(int client_socket)
         return;
     }
 }
+
 
 
 #endif

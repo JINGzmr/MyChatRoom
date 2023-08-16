@@ -3,6 +3,7 @@
 #include "../others/IO.h"
 #include "../others/data.h"
 #include "../others/define.h"
+#include "../others/redis.hpp"
 #include "login.hpp"
 #include "personalprocess.hpp"
 #include "groupprocess.hpp"
@@ -167,7 +168,7 @@ int main(int argc, char *argv[])
                     perror("client epoll_ctl error");
                     break;
                 }
-                std::cout << client_addr.sin_addr.s_addr << "正在连接..." << std::endl;
+                cout << client_addr.sin_addr.s_addr << "正在连接..." << endl;
             }
 
             else // 如果客户端有消息
@@ -208,7 +209,18 @@ void work(void *arg)
     // 使用户发送的每个
     string recvJson_buf;
     RecvMsg recvmsg;
-    recvmsg.RecvMsg_client(fd, recvJson_buf); //***********(用第一版IO.cc时)第二次回到登录界面进行选择时，按下回车键，服务器会出现段错误，且停在这行过不去
+    int re = recvmsg.RecvMsg_client(fd, recvJson_buf); //***********(用第一版IO.cc时)第二次回到登录界面进行选择时，按下回车键，服务器会出现段错误，且停在这行过不去
+    if (re == -1)                                      // 先判断客户端是否断开连接
+    {
+        // 更改在线情况
+        Redis redis;
+        redis.connect();
+        if (redis.sismember("onlinelist", redis.gethash("usersocket_id", to_string(fd))) == 1)
+            redis.sremvalue("onlinelist", redis.gethash("usersocket_id", to_string(fd)));
+
+        close(fd);
+        return;
+    }
     json parsed_data = json::parse(recvJson_buf);
     // 不同结构体只要都有flag这个成员，那他们序列化产生的json字符串里的falg都能通过这行代码解析出来
     //  即：根据 键 来解析出对应的 值
@@ -227,9 +239,14 @@ void work(void *arg)
     {
         signout_server(fd, recvJson_buf);
     }
-    else if (flag_ == FINDPASSWORD) // 注销
+    else if (flag_ == FINDPASSWORD) // 找回密码
     {
         findpassword_server(fd, recvJson_buf);
+    }
+    else if (flag_ == OUT) // 退出
+    {
+        close(fd); // 和退出的客户端断开连接
+        return;
     }
     else if (flag_ == SHOUNOTICE) // 展示离线消息
     {
