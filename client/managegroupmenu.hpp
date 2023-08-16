@@ -22,15 +22,15 @@ void manegegroupUI(void)
     cout << "——————————————————————————————————————————————————" << endl;
     cout << "---------------------  管理群组  -------------------" << endl;
     cout << "——————————————————————————————————————————————————" << endl;
-    cout << "                      26.添加管理员（群主）          " << endl;
-    cout << "                      27.删除管理员（群主）          " << endl;
-    cout << "                      28.编辑加群申请               " << endl;
-    cout << "                      29.删除群成员                 " << endl;
-    cout << "                      30.解散该群（群主）            " << endl;
+    cout << "                      1.添加管理员（群主）          " << endl;
+    cout << "                      2.删除管理员（群主）          " << endl;
+    cout << "                      3.编辑加群申请               " << endl;
+    cout << "                      4.删除群成员                 " << endl;
+    cout << "                      5.解散该群（群主）            " << endl;
     cout << "--------------------------------------------------" << endl;
-    cout << "                      25.返回上一级                 " << endl;
+    cout << "                      6.返回上一级                 " << endl;
     cout << "---------------------------------------------------" << endl;
-    cout << "                      16.刷新页面                   " << endl;
+    cout << "                      0.刷新页面                   " << endl;
     cout << "———————————————————————————————————————————————————" << endl;
 }
 
@@ -329,38 +329,43 @@ void delgroup_client(int client_socket, string id, Queue<string> &RecvQue)
 {
     // 先打印出群聊信息
     int re = checkgroup_client(client_socket, id, RecvQue, 0);
-    if (re == 0) // 没加入任何群组，则直接返回
-        return;
-
-    Group group;
-    cout << "请输入你要解散的群id：（警告：此操作仅对群主生效！）";
-    group.groupid = getInputWithoutCtrlD();
-    group.userid = id;
-    group.flag = DELGROUP;
-
-    // 发送数据
-    nlohmann::json sendJson_client = {
-        {"groupid", group.groupid},
-        {"userid", group.userid},
-        {"flag", group.flag},
-    };
-    string sendJson_client_string = sendJson_client.dump();
-    SendMsg sendmsg;
-    sendmsg.SendMsg_client(client_socket, sendJson_client_string);
-
-    // 从消息队列里取消息
-    string buf = RecvQue.remove();
-    json parsed_data = json::parse(buf);
-    int state_ = parsed_data["state"];
-
-    // 判断是否成功
-    if (state_ == SUCCESS)
+    if (re != 0) // 没加入任何群组，则直接返回
     {
-        cout << "解散成功！" << endl;
-    }
-    else if (state_ == FAIL)
-    {
-        cout << "权限不够！" << endl;
+
+        Group group;
+        cout << "请输入你要解散的群id：（警告：此操作仅对群主生效！）";
+        group.groupid = getInputWithoutCtrlD();
+        group.userid = id;
+        group.flag = DELGROUP;
+
+        // 发送数据
+        nlohmann::json sendJson_client = {
+            {"groupid", group.groupid},
+            {"userid", group.userid},
+            {"flag", group.flag},
+        };
+        string sendJson_client_string = sendJson_client.dump();
+        SendMsg sendmsg;
+        sendmsg.SendMsg_client(client_socket, sendJson_client_string);
+
+        // 从消息队列里取消息
+        string buf = RecvQue.remove();
+        json parsed_data = json::parse(buf);
+        int state_ = parsed_data["state"];//解析有问题
+
+        // 判断是否成功
+        if (state_ == SUCCESS)
+        {
+            cout << "解散成功！" << endl;
+        }
+        else if (state_ == FAIL)
+        {
+            cout << "权限不够！" << endl;
+        }
+        // else
+        // {
+        //     cout << "解散失败！请检查id是否正确" << endl;
+        // }
     }
 
     cout << "按'q'返回上一级" << endl;

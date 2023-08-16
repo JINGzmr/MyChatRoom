@@ -19,18 +19,18 @@ void groupmenuUI(void)
     cout << "——————————————————————————————————————————————————" << endl;
     cout << "----------------------  群聊  ---------------------" << endl;
     cout << "——————————————————————————————————————————————————" << endl;
-    cout << "                      17.创建群组                   " << endl;
-    cout << "                      18.加入群组                   " << endl;
-    cout << "                      19.查看已加入的群组            " << endl;
-    cout << "                      20.退出已加入的群组            " << endl;
-    cout << "                      21.查看群组成员列表            " << endl;
-    cout << "                      22.管理群组（群主、管理员）     " << endl;
-    cout << "                      23.选择群组聊天               " << endl;
-    cout << "                      24.查看群组聊天记录            " << endl;
+    cout << "                      1.创建群组                   " << endl;
+    cout << "                      2.加入群组                   " << endl;
+    cout << "                      3.查看已加入的群组            " << endl;
+    cout << "                      4.退出已加入的群组            " << endl;
+    cout << "                      5.查看群组成员列表            " << endl;
+    cout << "                      6.管理群组（群主、管理员）     " << endl;
+    cout << "                      7.选择群组聊天               " << endl;
+    cout << "                      8.查看群组聊天记录            " << endl;
     cout << "--------------------------------------------------" << endl;
-    cout << "                      25.返回上一级                 " << endl;
+    cout << "                      9.返回上一级                 " << endl;
     cout << "---------------------------------------------------" << endl;
-    cout << "                      16.刷新页面                   " << endl;
+    cout << "                      0.刷新页面                   " << endl;
     cout << "———————————————————————————————————————————————————" << endl;
 }
 
@@ -316,35 +316,35 @@ void managegroup_client(int client_socket, string id, Queue<string> &RecvQue)
 
         switch (num__)
         {
-        case 26:
+        case 1:
             system("clear");
             addmin_client(client_socket, id, RecvQue);
             manegegroupUI();
             break;
-        case 27:
+        case 2:
             system("clear");
             deladmin_client(client_socket, id, RecvQue);
             manegegroupUI();
             break;
-        case 28:
+        case 3:
             system("clear");
             checkapplylist_client(client_socket, id, RecvQue, 1);
             system("clear");
             manegegroupUI();
             break;
-        case 29:
+        case 4:
             system("clear");
             delgroupnum_client(client_socket, id, RecvQue);
             system("clear");
             manegegroupUI();
             break;
-        case 30:
+        case 5:
             system("clear");
             delgroup_client(client_socket, id, RecvQue);
             system("clear");
             manegegroupUI();
             break;
-        case 16:
+        case 0:
             system("clear");
             manegegroupUI();
             break;
@@ -352,7 +352,7 @@ void managegroup_client(int client_socket, string id, Queue<string> &RecvQue)
             cout << "无效的数字，请重新输入！" << endl;
             break;
         }
-    } while (num__ != 25); // 退出循环，返回上一级
+    } while (num__ != 6); // 退出循环，返回上一级
 
     system("clear");
     return;

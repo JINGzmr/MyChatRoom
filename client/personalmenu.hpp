@@ -36,23 +36,24 @@ void personalmenuUI(void)
     cout << "---------------------  聊天室  --------------------" << endl;
     cout << "------------------ PID= " << pid << " ----------------------" <<endl;
     cout << "——————————————————————————————————————————————————" << endl;
-    cout << "                      4.添加好友                   " << endl;
-    cout << "                      5.编辑好友申请                " << endl;
-    cout << "                      6.选择好友私聊                " << endl;
-    cout << "                      7.查看历史聊天记录            " << endl;
-    cout << "                      8.好友信息                   " << endl;
-    cout << "                      9.屏蔽好友                   " << endl;
-    cout << "                      10.删除好友                  " << endl;
-    cout << "         111.查看屏蔽好友列表   112.编辑屏蔽好友       " << endl;
-    cout << "                      12.个人信息                   " << endl;
+    cout << "                      1.添加好友                   " << endl;
+    cout << "                      2.编辑好友申请                " << endl;
+    cout << "                      3.选择好友私聊                " << endl;
+    cout << "                      4.查看历史聊天记录            " << endl;
+    cout << "                      5.好友信息                   " << endl;
+    cout << "                      6.屏蔽好友                   " << endl;
+    cout << "                      7.删除好友                   " << endl;
+    cout << "                      8.查看屏蔽好友列表             " << endl;
+    cout << "                      9.编辑屏蔽好友              " << endl;
+    cout << "                      10.个人信息                   " << endl;
     cout << "--------------------------------------------------" << endl;
-    cout << "                      13.群聊                      " << endl;
+    cout << "                      11.群聊                      " << endl;
     cout << "---------------------------------------------------" << endl;
-    cout << "                      14.文件传输                   " << endl;
+    cout << "                      12.文件传输                   " << endl;
     cout << "---------------------------------------------------" << endl;
-    cout << "                      15.退出登录                   " << endl;
+    cout << "                      13.退出登录                   " << endl;
     cout << "---------------------------------------------------" << endl;
-    cout << "                      16.刷新页面                  " << endl;
+    cout << "                      0.刷新页面                  " << endl;
     cout << "———————————————————————————————————————————————————" << endl;
 }
 
@@ -74,86 +75,86 @@ void messagemenu(int client_socket, string id, Queue<string> &RecvQue)
 
         switch (num)
         {
-        case 4:
+        case 1:
             system("clear");
             addfriend_client(client_socket, id, RecvQue);
             system("clear");
             personalmenuUI();
             break;
-        case 5:
+        case 2:
             system("clear");
             friendapplyedit_client(client_socket, id, RecvQue);
             system("clear");
             personalmenuUI();
             break;
-        case 6:
+        case 3:
             system("clear");
             chatfriend_client(client_socket, id, RecvQue);
             system("clear");
             personalmenuUI();
             break;
-        case 7:
+        case 4:
             system("clear");
             historychat_client(client_socket, id, RecvQue, 1);
             system("clear");
             personalmenuUI();
             break;
-        case 8:
+        case 5:
             system("clear");
             friendinfo_client(client_socket, id, RecvQue, 1);
             system("clear");
             personalmenuUI();
             break;
-        case 9:
+        case 6:
             system("clear");
             addblack_client(client_socket, id, RecvQue);
             system("clear");
             personalmenuUI();
             break;
-        case 10:
+        case 7:
             system("clear");
             delfriend_client(client_socket, id, RecvQue);
             system("clear");
             personalmenuUI();
             break;
-        case 111:
+        case 8:
             system("clear");
             blackfriendlist_client(client_socket, id, RecvQue, 1);
             system("clear");
             personalmenuUI();
             break;
-        case 112:
+        case 9:
             system("clear");
             blackfriendedit_client(client_socket, id, RecvQue);
             system("clear");
             personalmenuUI();
             break;
-        case 12:
+        case 10:
             system("clear");
             personalinfo_client(client_socket, id, RecvQue);
             system("clear");
             personalmenuUI();
             break;
-        case 13:
+        case 11:
             system("clear");
             group_client(client_socket, id, RecvQue);
             system("clear");
             personalmenuUI();
             break;
-        // case 14:
+        // case 12:
 
         //     break;
-        case 15:
+        case 13:
             logout_client(client_socket, id);
             break;
-        case 16:
+        case 0:
             system("clear");
             personalmenuUI();
             break;
         default:
             cout << "无效的数字，请重新输入！" << endl;
         }
-    } while (num != 15); // 15表示退出登录，即退出循环，返回上一级
+    } while (num != 13); // 13表示退出登录，即退出循环，返回上一级
 
     return;
 }
@@ -782,53 +783,53 @@ void group_client(int client_socket, string id, Queue<string> &RecvQue)
 
         switch (num_)
         {
-        case 17:
+        case 1:
             system("clear");
             creatgroup_client(client_socket, id, RecvQue);
             groupmenuUI();
             break;
-        case 18:
+        case 2:
             system("clear");
             addgroup_client(client_socket, id, RecvQue);
             // system("clear");
             groupmenuUI();
             break;
-        case 19:
+        case 3:
             system("clear");
             checkgroup_client(client_socket, id, RecvQue, 1);
             system("clear");
             groupmenuUI();
             break;
-        case 20:
+        case 4:
             system("clear");
             outgroup_client(client_socket, id, RecvQue);
             groupmenuUI();
             break;
-        case 21:
+        case 5:
             system("clear");
             checkgroupnum_client(client_socket, id, RecvQue, 1);
             system("clear");
             groupmenuUI();
             break;
-        case 22:
+        case 6:
             system("clear");
             managegroup_client(client_socket, id, RecvQue);
             system("clear");
             groupmenuUI();
             break;
-        case 23:
+        case 7:
             system("clear");
             groupchat_client(client_socket, id, RecvQue);
             system("clear");
             groupmenuUI();
             break;
-        case 24:
+        case 8:
             system("clear");
             historygroupchat_client(client_socket, id, RecvQue, 1);
             system("clear");
             groupmenuUI();
             break;
-        case 16:
+        case 0:
             system("clear");
             groupmenuUI();
             break;
@@ -836,7 +837,7 @@ void group_client(int client_socket, string id, Queue<string> &RecvQue)
             cout << "无效的数字，请重新输入！" << endl;
             break;
         }
-    } while (num_ != 25); // 退出循环，返回上一级
+    } while (num_ != 9); // 退出循环，返回上一级
 
     system("clear");
     return;
