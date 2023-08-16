@@ -106,7 +106,8 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
                 // cout << "sum:" << sum << endl;
                 // cout << "filesize:" << file.filesize << endl;
 
-                cout << sum / file.filesize * 100 << "%"<< "..." << endl;
+                cout << sum / file.filesize * 100 << "%"
+                     << "..." << endl;
             }
             else
             {
@@ -115,19 +116,19 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
         }
 
         close(fp);
-    }
 
-    // 从消息队列里取消息
-    string buf = RecvQue.remove();
-    json parsed_data = json::parse(buf);
-    int state_ = parsed_data["state"];
-    if (state_ == SUCCESS)
-    {
-        cout << "文件上传成功！" << endl;
-    }
-    else
-    {
-        cout << "文件上传失败！" << endl;
+        // 从消息队列里取消息
+        string buf = RecvQue.remove();
+        json parsed_data = json::parse(buf);
+        int state_ = parsed_data["state"];
+        if (state_ == SUCCESS)
+        {
+            cout << "文件上传成功！" << endl;
+        }
+        else
+        {
+            cout << "文件上传失败！" << endl;
+        }
     }
 
     cout << "按'q'返回上一级" << endl;
