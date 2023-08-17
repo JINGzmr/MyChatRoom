@@ -81,10 +81,11 @@ void sendfile_server(int fd, string buf)
     Redis redis;
     redis.connect();
 
-    string file_path = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
+    // string file_path = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
+    string file_path = "../file/" + file.filename;
 
     // 打开文件
-    int fp = open(file_path.c_str(),  O_RDONLY, S_IRUSR | S_IWUSR | O_LARGEFILE);
+    int fp = open(file_path.c_str(), O_RDONLY, S_IRUSR | S_IWUSR | O_LARGEFILE);
     if (fp == -1)
     {
         perror("open");
@@ -158,7 +159,7 @@ void recvfile_server(int fd, string buf)
     redis.connect();
 
     // file.filepath = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
-    file.filepath = "/home/" + file.filename;
+    file.filepath = file.filename;
 
     // 创建文件
     FILE *fp = fopen(file.filepath.c_str(), "wb");
