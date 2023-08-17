@@ -24,8 +24,6 @@ void filemenuUI(void)
     cout << "                      1.发送文件                  " << endl;
     cout << "                      2.接收文件                   " << endl;
     cout << "--------------------------------------------------" << endl;
-    cout << "                      3.返回上一级                 " << endl;
-    cout << "---------------------------------------------------" << endl;
     cout << "                      0.刷新页面                   " << endl;
     cout << "———————————————————————————————————————————————————" << endl;
 }
@@ -45,16 +43,17 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
         cout << "请输入要发送文件的好友id：" << endl;
         file.oppoid = getInputWithoutCtrlD();
         file.id = id;
+        string msg;
         while (1)
         {
             cout << "请输入文件路径名：" << endl;
             file.filepath = getInputWithoutCtrlD();
 
-            if (stat(file.filepath.c_str(), &info) == -1)
+            if (stat(file.filepath.c_str(), &info) == -1 && file.filepath != "esc")
             {
-                printf("路径错误！请重新输入\n");
+                printf("路径错误！请重新输入（或按“Esc”键退出）\n");
             }
-            else
+            else 
             {
                 break;
             }
@@ -131,9 +130,9 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
         }
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
     return;
@@ -228,39 +227,6 @@ void recvfile_client(int client_socket, string id, Queue<string> &RecvQue)
         SendMsg sendmsg;
         sendmsg.SendMsg_client(client_socket, sendJson_client_string);
 
-        // // 创建文件
-        // FILE *fp = fopen(file.filepath.c_str(), "wb");
-        // if (fp == NULL)
-        // {
-        //     perror("fopen fail");
-        //     return;
-        // }
-
-        // // 把数据写入文件
-        // RecvMsg recvmsg;
-        // int len; // 返回接收到的字节数
-        // char buffer[BUFSIZ];
-        // off_t sum = 0;
-        // while (file.filesize > 0)
-        // {
-        //     if (sizeof(buffer) < file.filesize)
-        //     {
-        //         len = recvmsg.readn(client_socket, buffer, sizeof(buffer));
-        //     }
-        //     else
-        //     {
-        //         len = recvmsg.readn(client_socket, buffer, file.filesize);
-        //     }
-        //     if (len < 0)
-        //     {
-        //         continue;
-        //     }
-
-        //     file.filesize -= len;
-        //     sum += len;
-        //     fwrite(buffer, len, 1, fp); // 写到文件里
-        // }
-        // fclose(fp);
         string buf = RecvQue.remove();
         if (buf == "ok")
         {
@@ -270,13 +236,11 @@ void recvfile_client(int client_socket, string id, Queue<string> &RecvQue)
         {
             cout << "文件下载失败！" << endl;
         }
-
-        // thread RecvThread = thread(recvfunc, client_socket, id, &RecvQue); // 工作线程启动
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
 }

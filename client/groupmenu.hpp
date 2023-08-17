@@ -28,8 +28,6 @@ void groupmenuUI(void)
     cout << "                      7.选择群组聊天               " << endl;
     cout << "                      8.查看群组聊天记录            " << endl;
     cout << "--------------------------------------------------" << endl;
-    cout << "                      9.返回上一级                 " << endl;
-    cout << "---------------------------------------------------" << endl;
     cout << "                      0.刷新页面                   " << endl;
     cout << "———————————————————————————————————————————————————" << endl;
 }
@@ -168,9 +166,9 @@ int checkgroup_client(int client_socket, string id, Queue<string> &RecvQue, int 
 
     if (fl == 1)
     {
-        cout << "按'q'返回上一级" << endl;
+        cout << "按'Esc'返回上一级" << endl;
         string a;
-        while ((a = getInputWithoutCtrlD()) != "q")
+        while ((a = getInputWithoutCtrlD()) != "esc")
         {
         }
         return re;
@@ -284,9 +282,9 @@ string checkgroupnum_client(int client_socket, string id, Queue<string> &RecvQue
     }
     if (fl == 1)
     {
-        cout << "按'q'返回上一级" << endl;
+        cout << "按'Esc'返回上一级" << endl;
         string a;
-        while ((a = getInputWithoutCtrlD()) != "q")
+        while ((a = getInputWithoutCtrlD()) != "esc")
         {
         }
         return "";
@@ -312,6 +310,11 @@ void managegroup_client(int client_socket, string id, Queue<string> &RecvQue)
         std::cin.sync();
 
         string str = getInputWithoutCtrlD();
+        if (str == "esc")
+        {
+            break;
+        }
+        
         num__ = checkcin(str);
 
         switch (num__)
@@ -352,7 +355,7 @@ void managegroup_client(int client_socket, string id, Queue<string> &RecvQue)
             cout << "无效的数字，请重新输入！" << endl;
             break;
         }
-    } while (num__ != 6); // 退出循环，返回上一级
+    } while (1);
 
     system("clear");
     return;
@@ -418,18 +421,18 @@ string historygroupchat_client(int client_socket, string id, Queue<string> &Recv
 
         if (fl == 1)
         {
-            cout << "按'q'返回上一级" << endl;
+            cout << "按'Esc'返回上一级" << endl;
             string a;
-            while ((a = getInputWithoutCtrlD()) != "q")
+            while ((a = getInputWithoutCtrlD()) != "esc")
                 str = "";
         }
 
         return str; // 返回所选择的群聊id
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
     return "";
@@ -452,7 +455,7 @@ void groupchat_client(int client_socket, string id, Queue<string> &RecvQue)
         {
             if (group.msg == "")
                 continue;
-                
+
             // 发送数据
             nlohmann::json sendJson_client = {
                 {"groupid", group.groupid},
@@ -480,9 +483,9 @@ void groupchat_client(int client_socket, string id, Queue<string> &RecvQue)
     }
     else if (group.groupid != "")
     {
-        cout << "按'q'返回上一级" << endl;
+        cout << "按'Esc'返回上一级" << endl;
         string a;
-        while ((a = getInputWithoutCtrlD()) != "q")
+        while ((a = getInputWithoutCtrlD()) != "esc")
         {
         }
     }

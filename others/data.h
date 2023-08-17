@@ -148,6 +148,66 @@ string getInputWithoutCtrlD()
     return input;
 }
 
+// 密码不显示
+string withoutdisplay()
+{
+    struct termios oldt, newt;
+
+    // 获取当前终端模式
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+
+    // 禁用 ECHO 和 ICANON 标志
+    newt.c_lflag &= ~(ICANON | ECHO);
+
+    // 设置新终端模式
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+
+    std::string input;
+    char ch;
+    while (std::cin.get(ch))
+    {
+        if (ch == '\x04')
+        { // Ctrl+D
+          // 不做任何响应
+        }
+        else if (ch == '\n')
+        {
+            cout << ch;
+            break; // 回车表示输入结束
+        }
+        else if (ch == 27)
+        { // Esc
+            cout << "esc" << endl;
+            return "esc";
+        }
+        else if (ch == 127)
+        { // Backspace
+            if (!input.empty())
+            {
+                input.pop_back();
+                cout << "\b \b"; // 清除前一个字符并移动光标
+            }
+        }
+        else
+        {
+            input += ch;
+        }
+    }
+
+    // 恢复原始终端模式
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+
+    // 检查输入是否包含空格
+    if (input.find(' ') != std::string::npos)
+    {
+        cout << "\033[31m警告：输入不能包含空格，请重新输入\033[0m\n"; // 红色告示
+        return "";                                                     // 返回一个空字符串表示输入无效
+    }
+
+    return input;
+}
+
 // 检测是否为非法输入的函数
 int checkcin(const string &str)
 {

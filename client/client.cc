@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 {
     // 忽略SIGINT和SIGTSTP信号
     // signal(SIGINT, SIG_IGN); // 忽略Ctrl+C
-    // signal(SIGTSTP, SIG_IGN); // 忽略Ctrl+Z
+    signal(SIGTSTP, SIG_IGN); // 忽略Ctrl+Z
 
     // 默认值
     string serverAddr = ServerAddr;

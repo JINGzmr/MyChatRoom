@@ -28,8 +28,6 @@ void manegegroupUI(void)
     cout << "                      4.删除群成员                 " << endl;
     cout << "                      5.解散该群（群主）            " << endl;
     cout << "--------------------------------------------------" << endl;
-    cout << "                      6.返回上一级                 " << endl;
-    cout << "---------------------------------------------------" << endl;
     cout << "                      0.刷新页面                   " << endl;
     cout << "———————————————————————————————————————————————————" << endl;
 }
@@ -252,9 +250,9 @@ void checkapplylist_client(int client_socket, string id, Queue<string> &RecvQue,
 
     if (fl == 1)
     {
-        cout << "按'q'返回上一级" << endl;
+        cout << "按'Esc'返回上一级" << endl;
         string a;
-        while ((a = getInputWithoutCtrlD()) != "q")
+        while ((a = getInputWithoutCtrlD()) != "esc")
         {
         }
         return;
@@ -317,9 +315,9 @@ void delgroupnum_client(int client_socket, string id, Queue<string> &RecvQue)
         }
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
 }
@@ -368,9 +366,9 @@ void delgroup_client(int client_socket, string id, Queue<string> &RecvQue)
         // }
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
 }

@@ -36,7 +36,7 @@ void personalmenuUI(void)
     pid_t pid = getpid();
     cout << "————————————————————————————————————————————————————" << endl;
     cout << "---------------------  聊天室  --------------------" << endl;
-    cout << "------------------ PID= " << pid << " ----------------------" <<endl;
+    cout << "------------------ PID= " << pid << " ----------------------" << endl;
     cout << "——————————————————————————————————————————————————" << endl;
     cout << "                      1.添加好友                   " << endl;
     cout << "                      2.编辑好友申请                " << endl;
@@ -254,9 +254,9 @@ void addfriend_client(int client_socket, string id, Queue<string> &RecvQue)
         cout << "已发送好友申请！" << endl;
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
     return;
@@ -337,9 +337,9 @@ void friendapplyedit_client(int client_socket, string id, Queue<string> &RecvQue
         }
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
     return;
@@ -391,9 +391,9 @@ string friendinfo_client(int client_socket, string id, Queue<string> &RecvQue, i
 
     if (fl == 1)
     {
-        cout << "按'q'返回上一级" << endl;
+        cout << "按'Esc'返回上一级" << endl;
         string a;
-        while ((a = getInputWithoutCtrlD()) != "q")
+        while ((a = getInputWithoutCtrlD()) != "esc")
         {
         }
         return "";
@@ -454,9 +454,9 @@ void addblack_client(int client_socket, string id, Queue<string> &RecvQue)
         }
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
     return;
@@ -510,9 +510,9 @@ void delfriend_client(int client_socket, string id, Queue<string> &RecvQue)
         }
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
     return;
@@ -551,9 +551,9 @@ string blackfriendlist_client(int client_socket, string id, Queue<string> &RecvQ
 
     if (fl == 1)
     {
-        cout << "按'q'返回上一级" << endl;
+        cout << "按'Esc'返回上一级" << endl;
         string a;
-        while ((a = getInputWithoutCtrlD()) != "q")
+        while ((a = getInputWithoutCtrlD()) != "esc")
         {
         }
         return "";
@@ -602,9 +602,9 @@ void blackfriendedit_client(int client_socket, string id, Queue<string> &RecvQue
         }
     }
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
     return;
@@ -675,9 +675,9 @@ string historychat_client(int client_socket, string id, Queue<string> &RecvQue, 
 
     if (fl == 1 || re == "fail")
     {
-        cout << "按'q'返回上一级" << endl;
+        cout << "按'Esc'返回上一级" << endl;
         string a;
-        while ((a = getInputWithoutCtrlD()) != "q")
+        while ((a = getInputWithoutCtrlD()) != "esc")
         {
         }
         str = "fail";
@@ -727,9 +727,9 @@ void chatfriend_client(int client_socket, string id, Queue<string> &RecvQue)
     }
     else
     {
-        cout << "按'q'返回上一级" << endl;
+        cout << "按'Esc'返回上一级" << endl;
         string a;
-        while ((a = getInputWithoutCtrlD()) != "q")
+        while ((a = getInputWithoutCtrlD()) != "esc")
         {
         }
         return;
@@ -762,9 +762,9 @@ void personalinfo_client(int client_socket, string id, Queue<string> &RecvQue)
     cout << "密码：***" << endl;
     cout << "密保：*** " << endl;
 
-    cout << "按'q'返回上一级" << endl;
+    cout << "按'Esc'返回上一级" << endl;
     string a;
-    while ((a = getInputWithoutCtrlD()) != "q")
+    while ((a = getInputWithoutCtrlD()) != "esc")
     {
     }
     return;
@@ -784,6 +784,11 @@ void group_client(int client_socket, string id, Queue<string> &RecvQue)
         std::cin.sync();
 
         string str = getInputWithoutCtrlD();
+        if (str == "esc")
+        {
+            break;
+        }
+
         num_ = checkcin(str);
 
         switch (num_)
@@ -842,7 +847,7 @@ void group_client(int client_socket, string id, Queue<string> &RecvQue)
             cout << "无效的数字，请重新输入！" << endl;
             break;
         }
-    } while (num_ != 9); // 退出循环，返回上一级
+    } while (1); // 退出循环，返回上一级
 
     system("clear");
     return;
@@ -862,6 +867,11 @@ void file_client(int client_socket, string id, Queue<string> &RecvQue)
         std::cin.sync();
 
         string str = getInputWithoutCtrlD();
+        if (str == "esc")
+        {
+            break;
+        }
+
         num_ = checkcin(str);
 
         switch (num_)
@@ -877,8 +887,12 @@ void file_client(int client_socket, string id, Queue<string> &RecvQue)
             // system("clear");
             filemenuUI();
             break;
+        case 0:
+            system("clear");
+            filemenuUI();
+            break;
         }
-    } while (num_ != 3); // 退出循环，返回上一级
+    } while (1);
 
     system("clear");
     return;

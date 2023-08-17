@@ -76,7 +76,7 @@ void login_client(int client_socket)
     cout << "请输入id: ";
     user.id = getInputWithoutCtrlD();
     cout << "请输入密码: ";
-    user.password = getInputWithoutCtrlD();
+    user.password = withoutdisplay();
     user.flag = LOGIN; // 表示是要登录
 
     // json序列化，及向服务器发送数据
@@ -132,9 +132,9 @@ void register_client(int client_socket)
     cout << "请输入用户名: ";
     user.username = getInputWithoutCtrlD();
     cout << "请输入密码: ";
-    user.password = getInputWithoutCtrlD();
+    user.password = withoutdisplay();
     cout << "请输入密保，用于找回密码: ";
-    user.secrecy = getInputWithoutCtrlD();
+    user.secrecy = withoutdisplay();
     user.flag = REGISTER; // 表示是要注册
 
     // 序列化，发送数据
@@ -182,7 +182,7 @@ void signout_client(int client_socket)
     cout << "请输入id: ";
     user.id = getInputWithoutCtrlD();
     cout << "请输入密码: ";
-    user.password = getInputWithoutCtrlD();
+    user.password = withoutdisplay();
     user.flag = SIGNOUT; // 表示是要注销
 
     // 序列化，发送数据（不用把结构体的所有成员都序列化）
@@ -239,7 +239,7 @@ void findpassword_client(int client_socket)
     cout << "请输入id: ";
     user.id = getInputWithoutCtrlD();
     cout << "请输入密保：";
-    user.secrecy = getInputWithoutCtrlD();
+    user.secrecy = withoutdisplay();
     user.flag = FINDPASSWORD; // 表示是要找回密码
 
     // 序列化，发送数据（不用把结构体的所有成员都序列化）
