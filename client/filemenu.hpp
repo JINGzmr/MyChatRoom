@@ -40,8 +40,19 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
     {
         struct stat info;
         File file;
-        cout << "请输入要发送文件的好友id：" << endl;
-        file.oppoid = getInputWithoutCtrlD();
+        while (1)
+        {
+            cout << "请输入要发送文件的好友id：" << endl;
+            file.oppoid = getInputWithoutCtrlD();
+            if(file.oppoid.length()!=10)
+            {
+                cout << "id有误！请重新输入！"<< endl;
+            }
+            else 
+            {
+                break;
+            }
+        }
         file.id = id;
         string msg;
         while (1)
@@ -53,7 +64,7 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
             {
                 printf("路径错误！请重新输入（或按“Esc”键退出）\n");
             }
-            else 
+            else
             {
                 break;
             }

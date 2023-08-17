@@ -759,8 +759,8 @@ void personalinfo_client(int client_socket, string id, Queue<string> &RecvQue)
     // 打印个人信息
     cout << "用户名：" << user.username << endl;
     cout << "id：" << id << endl;
-    cout << "密码：***" << endl;
-    cout << "密保：*** " << endl;
+    // cout << "密码：***" << endl;
+    // cout << "密保：*** " << endl;
 
     cout << "按'Esc'返回上一级" << endl;
     string a;

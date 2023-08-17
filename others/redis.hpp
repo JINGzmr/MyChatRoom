@@ -58,9 +58,6 @@ public:
     ~Redis();
     int connect(const string &addr, int port, const string &pwd); // 连接redis数据库：addr：IP地址，port：端口号，pwd：密码(默认为空)
     int disConnect();                                             // 断开连接
-    int setValue(const string &key, const string &value);         // 添加或修改键值对，成功返回0，失败<0
-    string getValue(const string &key);                           // 获取键对应的值，成功返回0，失败<0
-    int delKey(const string &key);                                // 删除键，成功返回影响的行数，失败<0
 
     int hsetValue(const string &key, const string &field, const string &value); // 插入哈希表
     int hashexists(const string &key, const string &field);                     // 查看是否存在，存在返回1，不存在返回0
@@ -129,30 +126,7 @@ int Redis::disConnect()
     redisFree(pm_rct);
     return 1;
 }
-int Redis::setValue(const string &key, const string &value)
-{
-    string cmd = "set  " + key + "  " + value;
-    pm_rr = (redisReply *)redisCommand(pm_rct, cmd.c_str());
-    int p = pm_rr->type;
-    freeReplyObject(pm_rr);
-    return p;
-}
-string Redis::getValue(const string &key) // 获取键对应的值，成功返回0，失败<0
-{
-    string cmd = "get  " + key;
-    pm_rr = (redisReply *)redisCommand(pm_rct, cmd.c_str());
-    string p = pm_rr->str;
-    freeReplyObject(pm_rr);
-    return p;
-}
-int Redis::delKey(const string &key)
-{
-    string cmd = "del  " + key;
-    pm_rr = (redisReply *)redisCommand(pm_rct, cmd.c_str());
-    int p = pm_rr->type;
-    freeReplyObject(pm_rr);
-    return p;
-}
+
 
 // 向数据库中的哈希表插入数据（参数：哈希表的键、字段、值）
 // ------这段代码的作用是通过调用Redis命令将指定的字段和值插入到指定的哈希表中，并返回执行结果的类型。

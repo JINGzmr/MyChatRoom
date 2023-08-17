@@ -367,27 +367,6 @@ void work(void *arg)
         {
             sendfile_server(fd, recvJson_buf);
         }
-
-        // 当前任务都处理完了（或出问题）之后，再挂树
-        // epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);
-    }
-
-    // 发送接受文件专门的线程，需要多次接收文件（因为fd已经摘树了，该客户端发送的文件就都会被改线程锁接收）
-    // 可能要改变此时该客户端的模式，由非阻塞->阻塞
-    // else
-    {
-        // if(flag_ == SENDFILE)//客户端发送文件，服务端调用接收文件的函数
-        // {
-        //     recvfile_server(fd, recvJson_buf);
-        // }
-        // else if(flag_ == RECVFILELIST)
-        // {
-        //     sendfilelist_server(fd, recvJson_buf);
-        // }
-        // else if(flag_ = RECVFILE)
-        // {
-        //     sendfile_server(fd, recvJson_buf);
-        // }
     }
 
     epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);

@@ -88,7 +88,7 @@ void login_client(int client_socket)
     string sendJson_client_string = sendJson_client.dump();
     SendMsg sendmsg;
     sendmsg.SendMsg_client(client_socket, sendJson_client_string);
-
+ 
     // 接收数据
     int state_;
     RecvMsg recvmsg;

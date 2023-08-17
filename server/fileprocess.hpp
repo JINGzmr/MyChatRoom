@@ -134,12 +134,13 @@ void sendfile_server(int fd, string buf)
                  << "..." << endl;
         }
         else
-        {
+        {    // file.filepath = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
+
             perror("sendfile");
         }
     }
-    // file.oppoid = redis.gethash("name_id", file.opponame);
-    // redis.sremvalue(file.id + "to" + file.oppoid + ":file", file.filename);
+    file.oppoid = redis.gethash("name_id", file.opponame);
+    redis.sremvalue(file.id + "to" + file.oppoid + ":file", file.filename);
     close(fp);
 }
 
@@ -158,7 +159,6 @@ void recvfile_server(int fd, string buf)
     Redis redis;
     redis.connect();
 
-    // file.filepath = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
     file.filepath = "../file/"+file.filename;
 
     // 创建文件

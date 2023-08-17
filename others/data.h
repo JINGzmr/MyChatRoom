@@ -148,7 +148,7 @@ string getInputWithoutCtrlD()
     return input;
 }
 
-// 密码不显示
+// 密码加密显示
 string withoutdisplay()
 {
     struct termios oldt, newt;
@@ -191,6 +191,7 @@ string withoutdisplay()
         }
         else
         {
+            cout << "*"; // 输出加密字符到终端
             input += ch;
         }
     }

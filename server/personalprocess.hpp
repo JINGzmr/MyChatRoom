@@ -243,6 +243,10 @@ void friendapplyedit_server(int fd, string buf)
         {
             cout << "已同意" << endl;
             redis.sremvalue(key, applyfriend_id); // 从申请列表中移除
+            if (redis.sismember(applyfriend_id + ":friends_apply", friend_.id) == 1)
+            {
+                redis.sremvalue(applyfriend_id + ":friends_apply", friend_.id);
+            }
             string key1 = friend_.id + ":friends";
             string key2 = applyfriend_id + ":friends";
             redis.saddvalue(key1, applyfriend_id); // 对方成为自己好友
@@ -255,6 +259,10 @@ void friendapplyedit_server(int fd, string buf)
         {
             cout << "已拒绝" << endl;
             redis.sremvalue(key, applyfriend_id); // 从申请列表中移除
+            if (redis.sismember(applyfriend_id + ":friends_apply", friend_.id) == 1)
+            {
+                redis.sremvalue(applyfriend_id + ":friends_apply", friend_.id);
+            }
 
             friend_.state = SUCCESS;
             friend_.type = NORMAL;
@@ -330,7 +338,7 @@ void addblack_server(int fd, string buf)
     friend_.oppoid = parsed_data["oppoid"];
     printf("--- %s 用户将要屏蔽好友 ---\n", friend_.id.c_str());
 
-    Redis redis; 
+    Redis redis;
     redis.connect();
 
     string key = friend_.id + ":bfriends";
@@ -425,7 +433,7 @@ void blackfriendlist_server(int fd, string buf)
     {
         // 得到发送请求的用户id
         string bfriend_id = arry[i]->str;
-        if (redis.hashexists("userinfo", bfriend_id) != 1|| redis.sismember(friend_.id+":friends",bfriend_id)!=1) // id不存在，说明该用户已经注销了
+        if (redis.hashexists("userinfo", bfriend_id) != 1 || redis.sismember(friend_.id + ":friends", bfriend_id) != 1) // id不存在，说明该用户已经注销了
             continue;
 
         string name = redis.gethash("id_name", bfriend_id); // 拿着id去找username
