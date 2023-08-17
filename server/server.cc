@@ -103,11 +103,11 @@ int main(int argc, char *argv[])
     {
         struct epoll_event evs[MAX_CONN];
         int n = epoll_wait(epld, evs, MAX_CONN, -1);
-        if (n < 0)
-        {
-            perror("epoll_wait error");
-            break;
-        }
+        // if (n < 0)
+        // {
+        //     perror("epoll_wait error");
+        //     break;
+        // }
 
         for (int i = 0; i < n; i++) // 本次epoll一共监听到n个事件，即有n个fd，每次循环只针对单个fd（即一个客户端）
         {
@@ -355,6 +355,18 @@ void work(void *arg)
         {
             groupchat_server(fd, recvJson_buf);
         }
+        else if (flag_ == SENDFILE) // 客户端发送文件，服务端调用接收文件的函数
+        {
+            recvfile_server(fd, recvJson_buf);
+        }
+        else if (flag_ == RECVFILELIST)
+        {
+            sendfilelist_server(fd, recvJson_buf);
+        }
+        else if (flag_ = RECVFILE)
+        {
+            sendfile_server(fd, recvJson_buf);
+        }
 
         // 当前任务都处理完了（或出问题）之后，再挂树
         // epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);
@@ -364,14 +376,18 @@ void work(void *arg)
     // 可能要改变此时该客户端的模式，由非阻塞->阻塞
     // else
     {
-        if(flag_ == SENDFILE)//客户端发送文件，服务端调用接收文件的函数
-        {
-            recvfile_server(fd, recvJson_buf);
-        }
-        else if(flag_ == RECVFILE)
-        {
-            sendfile_server(fd, recvJson_buf);
-        }
+        // if(flag_ == SENDFILE)//客户端发送文件，服务端调用接收文件的函数
+        // {
+        //     recvfile_server(fd, recvJson_buf);
+        // }
+        // else if(flag_ == RECVFILELIST)
+        // {
+        //     sendfilelist_server(fd, recvJson_buf);
+        // }
+        // else if(flag_ = RECVFILE)
+        // {
+        //     sendfile_server(fd, recvJson_buf);
+        // }
     }
 
     epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);

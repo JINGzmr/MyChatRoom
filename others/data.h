@@ -68,8 +68,9 @@ struct File
 {
     int type;        // 标记事件类型
     int flag;        // 标记选项
-    string id;       // 发送文件的用户id
+    string id;       // 发送文件的用户id(相对的)
     string oppoid;   // 接收文件的用户id
+    string opponame; // 接收方接收发送文件方的名字
     string filename; // 文件名
     string filepath; // 文件路径名
     off_t filesize;  // 文件大小

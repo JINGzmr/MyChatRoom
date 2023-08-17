@@ -443,9 +443,7 @@ void groupchat_client(int client_socket, string id, Queue<string> &RecvQue)
     group.groupid = historygroupchat_client(client_socket, id, RecvQue, 0);
     if (group.groupid != "fail" && group.groupid != "") // 说明该群id存在
     {
-
         chatgroup = group.groupid;
-
         group.msg;
         group.userid = id;
         group.flag = GROUPCHAT;

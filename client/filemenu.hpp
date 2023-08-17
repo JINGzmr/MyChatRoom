@@ -142,8 +142,142 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
 // 接收文件
 // 先选择要接受来自谁的文件，文件名是什么
 // 接着服务器也是开一个线程负责将本机上的文件多次发送给接收文件的客户端，直到发送完毕
-void recvfile_client(int client_socket, string id, Queue<string> &RecvQue)
+string recvfilelist_client(int client_socket, string id, Queue<string> &RecvQue)
 {
+
+    // 先打印出好友信息
+    string re = friendinfo_client(client_socket, id, RecvQue, 0);
+    string str;
+
+    if (re != "fail")
+    {
+        File file;
+        cout << "输入好友昵称：" << endl;
+        file.opponame = getInputWithoutCtrlD();
+        file.id = id;
+
+        // 发送数据
+        nlohmann::json sendJson_client = {
+            {"id", file.id},
+            {"opponame", file.opponame},
+            {"flag", RECVFILELIST},
+        };
+        string sendJson_client_string = sendJson_client.dump();
+        SendMsg sendmsg;
+        sendmsg.SendMsg_client(client_socket, sendJson_client_string);
+
+        // 从消息队列里取消息
+        string buf = RecvQue.remove();
+        json parsed_data = json::parse(buf);
+        vector<string> files_Vector = parsed_data["vector"];
+        int state_ = parsed_data["state"];
+
+        if (state_ == FAIL)
+        {
+            cout << "对方不是你的好友！" << endl;
+            str = "fail";
+        }
+        else if (state_ == USERNAMEUNEXIST)
+        {
+            cout << "账号不存在！" << endl;
+            str = "fail";
+        }
+        else if (files_Vector.empty())
+        {
+            cout << "———————————————暂无文件——————————————" << endl;
+            str = "fail";
+        }
+        else
+        {
+            // 循环打印输出
+            cout << "————————————————————————————————————————————————" << endl;
+            for (int i = files_Vector.size() - 1; i >= 0; i--)
+            {
+                cout << files_Vector[i] << endl;
+            }
+            cout << "————————————————以上为该好友向你发送的全部文件———————————————————" << endl;
+            str = file.opponame;
+        }
+    }
+
+    return str;
 }
 
+void recvfile_client(int client_socket, string id, Queue<string> &RecvQue)
+{
+    File file;
+    file.opponame = recvfilelist_client(client_socket, id, RecvQue);
+    if (file.opponame != "fail")
+    {
+        // 选择要接收的文件名，准备开始接受文件
+        cout << "输入要接收的文件名：" << endl;
+        file.filename = getInputWithoutCtrlD();
+        cout << "输入文件的保存路径：" << endl;
+        file.filepath = getInputWithoutCtrlD() + "/" + file.filename;
+        file.id = id;
+
+        // 发送数据
+        nlohmann::json sendJson_client = {
+            {"filename", file.filename},
+            {"id", file.id},
+            {"opponame", file.opponame},
+            {"filepath", file.filepath},
+            {"flag", RECVFILE},
+        };
+        string sendJson_client_string = sendJson_client.dump();
+        SendMsg sendmsg;
+        sendmsg.SendMsg_client(client_socket, sendJson_client_string);
+
+        // // 创建文件
+        // FILE *fp = fopen(file.filepath.c_str(), "wb");
+        // if (fp == NULL)
+        // {
+        //     perror("fopen fail");
+        //     return;
+        // }
+
+        // // 把数据写入文件
+        // RecvMsg recvmsg;
+        // int len; // 返回接收到的字节数
+        // char buffer[BUFSIZ];
+        // off_t sum = 0;
+        // while (file.filesize > 0)
+        // {
+        //     if (sizeof(buffer) < file.filesize)
+        //     {
+        //         len = recvmsg.readn(client_socket, buffer, sizeof(buffer));
+        //     }
+        //     else
+        //     {
+        //         len = recvmsg.readn(client_socket, buffer, file.filesize);
+        //     }
+        //     if (len < 0)
+        //     {
+        //         continue;
+        //     }
+
+        //     file.filesize -= len;
+        //     sum += len;
+        //     fwrite(buffer, len, 1, fp); // 写到文件里
+        // }
+        // fclose(fp);
+        string buf = RecvQue.remove();
+        if (buf == "ok")
+        {
+            cout << "文件下载成功！" << endl;
+        }
+        else
+        {
+            cout << "文件下载失败！" << endl;
+        }
+
+        // thread RecvThread = thread(recvfunc, client_socket, id, &RecvQue); // 工作线程启动
+    }
+
+    cout << "按'q'返回上一级" << endl;
+    string a;
+    while ((a = getInputWithoutCtrlD()) != "q")
+    {
+    }
+}
 #endif

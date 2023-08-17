@@ -3,6 +3,7 @@
 
 const int BUFFER_SIZE = 10240; // 缓冲区的大小（用于存储recv来的序列化好的string）
 
+#define READYSEND - 13     // 服务器准备开始向客户端发文件，客户端接收到该信号后将工作线程禁用
 #define NOTADMIN -12       // 不是群管理
 #define NOTINGROUP -11     // 不是群成员
 #define HADADMIN -10       // 已经是群管理
@@ -49,8 +50,9 @@ const int BUFFER_SIZE = 10240; // 缓冲区的大小（用于存储recv来的序
 #define DELGROUPNUM 29     // 删除群成员
 #define DELGROUP 30        // 解散群组
 
-#define SENDFILE 31 // 发送文件
-#define RECVFILE 32 // 接收文件
+#define SENDFILE 31     // 发送文件
+#define RECVFILELIST 32 // 接收文件列表
+#define RECVFILE 33     // 接收文件
 
 #define LOGOUT 15     // 退出登录
 #define REFRESH 16    // 刷新页面
