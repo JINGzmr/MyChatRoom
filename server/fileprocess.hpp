@@ -157,7 +157,8 @@ void recvfile_server(int fd, string buf)
     Redis redis;
     redis.connect();
 
-    file.filepath = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
+    // file.filepath = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
+    file.filepath = "/home/" + file.filename;
 
     // 创建文件
     FILE *fp = fopen(file.filepath.c_str(), "wb");

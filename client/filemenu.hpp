@@ -93,7 +93,7 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
         while (1)
         {
             len = sendfile(client_socket, fp, NULL, file.filesize);
-            // cout << "len:" << len << endl;
+            cout << "len:" << len << endl;
             system("sync"); // 文件系统缓冲区中的数据同步到磁盘
             if (len == 0 && sum == file.filesize)
             {
@@ -103,8 +103,8 @@ void sendfile_client(int client_socket, string id, Queue<string> &RecvQue)
             else if (len > 0)
             {
                 sum += len;
-                // cout << "sum:" << sum << endl;
-                // cout << "filesize:" << file.filesize << endl;
+                cout << "sum:" << sum << endl;
+                cout << "filesize:" << file.filesize << endl;
 
                 cout << sum / file.filesize * 100 << "%"
                      << "..." << endl;
