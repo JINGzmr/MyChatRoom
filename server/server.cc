@@ -4,10 +4,10 @@
 #include "../others/data.h"
 #include "../others/define.h"
 #include "../others/redis.h"
-#include "login.hpp"
-#include "personalprocess.hpp"
-#include "groupprocess.hpp"
-#include "managegroupprocess.hpp"
+#include "login.h"
+#include "personalprocess.h"
+#include "groupprocess.h"
+#include "managegroupprocess.h"
 #include "fileprocess.h"
 
 #include <iostream>
@@ -30,6 +30,24 @@ void work(void *arg);
 
 int main(int argc, char *argv[])
 {
+    // 启动前先把所有用户在线列表清空
+    Redis redis;
+    redis.connect();
+
+    string key = "onlinelist";
+    int len = redis.scard(key);
+
+    redisReply **arry = redis.smembers(key);
+
+    for (int i = 0; i < len; i++)
+    {
+        // 得到并移除
+        string onlineid = arry[i]->str;
+        redis.sremvalue(key, onlineid);
+
+        freeReplyObject(arry[i]);
+    }
+
     // 默认值
     string serverAddr = ServerAddr;
     int port = PORT;
@@ -215,7 +233,7 @@ void work(void *arg)
     {
         // 更改在线情况
         Redis redis;
-        redis.connect("127.0.0.1", 6379, "");
+        redis.connect();
         if (redis.sismember("onlinelist", redis.gethash("usersocket_id", to_string(fd))) == 1)
             redis.sremvalue("onlinelist", redis.gethash("usersocket_id", to_string(fd)));
 
@@ -297,6 +315,7 @@ void work(void *arg)
         }
         else if (flag_ == CHATFRIEND)
         {
+            epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);
             chatfriend_server(fd, recvJson_buf);
         }
         else if (flag_ == PERSONALINFO)
@@ -353,6 +372,7 @@ void work(void *arg)
         }
         else if (flag_ == GROUPCHAT)
         {
+            epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);
             groupchat_server(fd, recvJson_buf);
         }
         else if (flag_ == SENDFILE) // 客户端发送文件，服务端调用接收文件的函数
@@ -369,6 +389,8 @@ void work(void *arg)
         }
     }
 
-    epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);
+    if (flag_ != CHATFRIEND || flag_ != GROUPCHAT)
+        epoll_ctl(epld, EPOLL_CTL_ADD, fd, &temp);
+        
     return;
 }

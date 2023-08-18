@@ -1,5 +1,14 @@
 #include "fileprocess.h"
 
+#include "../others/data.h"
+#include "../others/define.h"
+#include "../others/IO.h"
+#include "../others/redis.h"
+#include <vector>
+
+using json = nlohmann::json;
+using namespace std;
+
 // 向客户端发送文件列表
 void sendfilelist_server(int fd, string buf)
 {
@@ -10,7 +19,7 @@ void sendfilelist_server(int fd, string buf)
     printf("--- %s 用户查看 %s 发来的文件 ---\n", file.id.c_str(), file.opponame.c_str());
 
     Redis redis;
-    redis.connect("127.0.0.1", 6379, "");
+    redis.connect();
 
     vector<string> files_Vector; // 放文件的容器
 
@@ -67,7 +76,7 @@ void sendfile_server(int fd, string buf)
     printf("--- %s 用户接收 %s 发来的文件 ---\n", file.id.c_str(), file.opponame.c_str());
 
     Redis redis;
-    redis.connect("127.0.0.1", 6379, "");
+    redis.connect();
 
     // string file_path = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
     string file_path = "../file/" + file.filename;
@@ -145,7 +154,7 @@ void recvfile_server(int fd, string buf)
     cout << file.filename << endl;
 
     Redis redis;
-    redis.connect("127.0.0.1", 6379, "");
+    redis.connect();
 
     file.filepath = "../file/"+file.filename;
 

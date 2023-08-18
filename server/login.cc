@@ -4,7 +4,6 @@
 #include "../others/redis.h"
 #include "../others/IO.h"
 
-#include <iostream>
 using json = nlohmann::json;
 using namespace std;
 
@@ -22,7 +21,7 @@ void login_server(int fd, string buf)
     // cout << user.username << '\n' << user.password << endl;
 
     Redis redis;
-    redis.connect("127.0.0.1", 6379, "");
+    redis.connect();
 
     if (redis.hashexists("userinfo", user.id) != 1) // 账号不存在
     {
@@ -83,7 +82,7 @@ void register_server(int fd, string buf)
     printf("用户名：%s\n密码：%s\n密保：%s", user.username.c_str(), user.password.c_str(), user.secrecy.c_str());
 
     Redis redis;
-    redis.connect("127.0.0.1", 6379, "");
+    redis.connect();
 
     if (redis.sismember("username", user.username) == 1) // 用户名已被使用
     {
@@ -129,7 +128,7 @@ void signout_server(int fd, string buf)
     printf("id：%s\n密码：%s\n", user.id.c_str(), user.password.c_str());
 
     Redis redis;
-    redis.connect("127.0.0.1", 6379, "");
+    redis.connect();
 
     if (redis.hashexists("userinfo", user.id) != 1) // 账号不存在
     {
@@ -171,7 +170,7 @@ void findpassword_server(int fd, string buf)
     printf("id：%s\n密码：%s\n", user.id.c_str(), user.secrecy.c_str());
 
     Redis redis;
-    redis.connect("127.0.0.1", 6379, "");
+    redis.connect();
 
     if (redis.hashexists("userinfo", user.id) != 1) // 账号不存在
     {

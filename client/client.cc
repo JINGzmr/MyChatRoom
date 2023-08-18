@@ -64,8 +64,6 @@ int main(int argc, char *argv[])
     std::cout << connect_result << std::endl;
     std::cout << "欢迎来到私人聊天室" << std::endl;
 
-
-
     // 进入登录界面
     menu(client_socket);
 

@@ -4,9 +4,11 @@
 
 #include <vector>
 #include <iostream>
-using namespace std;
+// using namespace std;
+using std::string;
+using std::vector;
 
-// int epld;
+// int epld
 
 //不要在.h文件里对全局的extern进行初始化
 extern string chatname ;
@@ -51,7 +53,7 @@ struct Group
 {
     int type;               // 标记事件类型
     int flag;               // 标记选项
-    string groupid;         // 群id
+    std::string groupid;         // 群id
     string groupname;       // 群名
     string ownerid;         // 群主id
     vector<string> adminid; // 群管理们的id
