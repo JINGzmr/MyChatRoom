@@ -142,6 +142,8 @@ int main(int argc, char *argv[])
                 setsockopt(fd, SOL_TCP, TCP_KEEPCNT, &keep_count, sizeof(keep_count)))
             {
                 perror("setsockopt");
+                if (redis.sismember("onlinelist", redis.gethash("usersocket_id", to_string(fd))) == 1)
+                    redis.sremvalue("onlinelist", redis.gethash("usersocket_id", to_string(fd)));
                 close(fd);
             }
 
