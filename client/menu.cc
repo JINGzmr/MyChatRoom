@@ -1,5 +1,16 @@
 #include "menu.h"
 
+#include "../others/head.h"
+#include "../others/data.h"
+#include "../others/define.h"
+#include "../others/IO.h"
+#include "personalmenu.h"
+#include "../others/threadwork.h"
+#include "../others/queue.hpp"
+
+using json = nlohmann::json;
+using namespace std;
+
 void menu(int client_socket)
 {
     int num;

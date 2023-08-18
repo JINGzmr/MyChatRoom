@@ -7,7 +7,7 @@
 #define THREADWORK_H
 
 #include "head.h"
-#include "queue.hpp"
+#include "../others/queue.hpp"
 #include "../others/define.h"
 #include "../others/data.h"
 #include "../others/IO.h"

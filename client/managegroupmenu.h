@@ -2,20 +2,10 @@
 #ifndef MANAGEGROUPMENU_H
 #define MANAGEGROUPMENU_H
 
-#include "../others/data.h"
-#include "../others/define.h"
-#include "../others/head.h"
-#include "../others/IO.h"
-#include "menu.h"
-#include "../others/threadwork.h"
-#include "groupmenu.h"
+#include "../others/queue.hpp"
 
 #include <iostream>
-using json = nlohmann::json;
 using namespace std;
-
-string checkgroupnum_client(int client_socket, string id, Queue<string> &RecvQue, int fl);
-int checkgroup_client(int client_socket, string id, Queue<string> &RecvQue, int fl);
 
 void manegegroupUI(void);
 

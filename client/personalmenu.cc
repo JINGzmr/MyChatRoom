@@ -1,5 +1,17 @@
 #include "personalmenu.h"
 
+#include "../others/data.h"
+#include "../others/define.h"
+#include "../others/head.h"
+#include "../others/IO.h"
+#include "menu.h"
+#include "../others/threadwork.h"
+#include "groupmenu.h"
+#include "filemenu.h"
+
+using json = nlohmann::json;
+using namespace std;
+
 void personalmenuUI(void)
 {
     pid_t pid = getpid();

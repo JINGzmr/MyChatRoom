@@ -4,25 +4,26 @@ project(chatroom)
 # 设置要求的最低 CMake 版本
 cmake_minimum_required(VERSION 3.10)
 
+include_directories(
+    server
+    client
+    others
+)
+
 # ————————只要cc，不用.h
 # 添加可执行文件 "client" 并指定源文件
 add_executable(client 
     client/client.cc 
-    client/menu.h 
     client/menu.cc
-    others/data.h 
+    others/data.cc
     others/define.h 
-    others/head.h 
-    others/IO.h 
-    client/personalmenu.h 
     others/IO.cc
-    others/threadwork.h
     others/threadwork.cc
     others/queue.hpp
-    client/groupmenu.hpp
-    client/managegroupmenu.hpp
-    client/filemenu.h
+    client/groupmenu.cc
+    client/managegroupmenu.cc
     client/filemenu.cc
+    client/personalmenu.cc
 )
 
 # 添加可执行文件 "server" 并指定源文件
@@ -32,7 +33,7 @@ add_executable(server
     others/threadpool.cc 
     others/IO.h 
     others/IO.cc 
-    others/data.h 
+    others/data.cc
     others/define.h 
     server/login.hpp
     others/redis.h

@@ -2,16 +2,9 @@
 #ifndef GROUPMENU_HPP
 #define GROUPMENU_HPP
 
-#include "../others/data.h"
-#include "../others/define.h"
-#include "../others/head.h"
-#include "../others/IO.h"
-#include "menu.h"
-#include "../others/threadwork.h"
-#include "managegroupmenu.h"
+#include "../others/queue.hpp"
 
 #include <iostream>
-using json = nlohmann::json;
 using namespace std;
 
 void groupmenuUI(void);
