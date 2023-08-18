@@ -3,7 +3,8 @@
 #define DATA_H
 
 #include <vector>
-
+#include <unistd.h>
+#include <termios.h>
 #include <iostream>
 using namespace std;
 

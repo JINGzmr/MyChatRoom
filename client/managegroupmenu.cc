@@ -1,21 +1,4 @@
-// 客户端的群聊管理有关的事务
-#ifndef MANAGEGROUPMENU_HPP
-#define MANAGEGROUPMENU_HPP
-
-#include "../others/data.h"
-#include "../others/define.h"
-#include "../others/head.h"
-#include "../others/IO.h"
-#include "menu.hpp"
-#include "../others/threadwork.hpp"
-#include "groupmenu.hpp"
-
-#include <iostream>
-using json = nlohmann::json;
-using namespace std;
-
-string checkgroupnum_client(int client_socket, string id, Queue<string> &RecvQue, int fl);
-int checkgroup_client(int client_socket, string id, Queue<string> &RecvQue, int fl);
+#include "managegroupmenu.h"
 
 void manegegroupUI(void)
 {
@@ -372,5 +355,3 @@ void delgroup_client(int client_socket, string id, Queue<string> &RecvQue)
     {
     }
 }
-
-#endif

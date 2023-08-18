@@ -5,7 +5,7 @@
 #include "../others/data.h"
 #include "../others/define.h"
 #include "../others/IO.h"
-#include "../others/redis.hpp"
+#include "../others/redis.h"
 #include <vector>
 
 #include <iostream>
@@ -22,7 +22,7 @@ void creatgroup_server(int fd, string buf)
     printf("--- %s 用户将要创建名称为 %s 的群聊 ---\n", group.ownerid.c_str(), group.groupname.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     if (redis.sismember("groupname", group.groupname) == 1) // 名称已被使用
     {
@@ -78,7 +78,7 @@ void addgroup_server(int fd, string buf)
     printf("--- %s 用户将向 %s 发送加群申请 ---\n", group.userid.c_str(), group.groupid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = group.groupid + ":admin";
     int len = redis.scard(key);
@@ -175,7 +175,7 @@ void checkgroup_server(int fd, string buf)
     printf("--- %s 用户查看已加入的群组 ---\n", group.userid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = group.userid + ":group";
     int len = redis.scard(key);
@@ -240,7 +240,7 @@ void outgroup_server(int fd, string buf)
     printf("--- %s 用户将要退出 %s 群 ---\n", group.userid.c_str(), group.groupid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     if (redis.hashexists("groupid_name", group.groupid) == 1 && redis.sismember(group.userid + ":group", group.groupid) == 1) // 存在该群且已加入
     {
@@ -293,7 +293,7 @@ void checkgroupnum_server(int fd, string buf)
     printf("--- %s 用户查看 %s 群的成员 ---\n", group.userid.c_str(), group.groupid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     vector<string> groupnumname_Vector;  // 放群成员名字的容器
     vector<string> groupnumid_Vector;    // 放群成员id的容器
@@ -370,7 +370,7 @@ void historygroupchat_server(int fd, string buf)
     printf("--- %s 用户将要查看 %s 群的历史消息 ---\n", group.userid.c_str(), group.groupid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = group.groupid + ":historygroupchat";
     vector<string> historygroupchat_Vector; // 放聊天记录的容器
@@ -421,7 +421,7 @@ void groupchat_server(int fd, string buf)
     cout << group.msg << endl;
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
     nlohmann::json json_;
 
     // 看是否还在群组中（会不会聊天到一半被踢出群聊或群聊被解散）

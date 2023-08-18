@@ -3,12 +3,12 @@
 #include "../others/IO.h"
 #include "../others/data.h"
 #include "../others/define.h"
-#include "../others/redis.hpp"
+#include "../others/redis.h"
 #include "login.hpp"
 #include "personalprocess.hpp"
 #include "groupprocess.hpp"
 #include "managegroupprocess.hpp"
-#include "fileprocess.hpp"
+#include "fileprocess.h"
 
 #include <iostream>
 #include <string>
@@ -215,7 +215,7 @@ void work(void *arg)
     {
         // 更改在线情况
         Redis redis;
-        redis.connect();
+        redis.connect("127.0.0.1", 6379, "");
         if (redis.sismember("onlinelist", redis.gethash("usersocket_id", to_string(fd))) == 1)
             redis.sremvalue("onlinelist", redis.gethash("usersocket_id", to_string(fd)));
 

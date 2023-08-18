@@ -1,20 +1,7 @@
-// 客户端发送文件选项界面，及与文件有关的事务
-#ifndef FILEMENU_HPP
-#define FILEMENU_HPP
-
-#include "../others/data.h"
-#include "../others/define.h"
-#include "../others/head.h"
-#include "../others/IO.h"
-#include "menu.hpp"
-#include "../others/threadwork.hpp"
-#include "personalmenu.hpp"
-
-#include <iostream>
-using json = nlohmann::json;
-using namespace std;
+#include "filemenu.h"
 
 string friendinfo_client(int client_socket, string id, Queue<string> &RecvQue, int fl);
+
 
 void filemenuUI(void)
 {
@@ -255,4 +242,3 @@ void recvfile_client(int client_socket, string id, Queue<string> &RecvQue)
     {
     }
 }
-#endif

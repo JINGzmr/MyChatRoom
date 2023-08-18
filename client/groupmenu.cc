@@ -1,18 +1,4 @@
-// 客户端的群聊选项界面，及与群聊有关的事务
-#ifndef GROUPMENU_HPP
-#define GROUPMENU_HPP
-
-#include "../others/data.h"
-#include "../others/define.h"
-#include "../others/head.h"
-#include "../others/IO.h"
-#include "menu.hpp"
-#include "../others/threadwork.hpp"
-#include "managegroupmenu.hpp"
-
-#include <iostream>
-using json = nlohmann::json;
-using namespace std;
+#include "groupmenu.h"
 
 void groupmenuUI(void)
 {
@@ -490,5 +476,3 @@ void groupchat_client(int client_socket, string id, Queue<string> &RecvQue)
         }
     }
 }
-
-#endif

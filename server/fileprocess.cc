@@ -1,16 +1,4 @@
-// 服务器对客户端groupmenu里不同的选项进行不同的处理
-#ifndef FILEROCESS_HPP
-#define FILEPROCESS_HPP
-
-#include "../others/data.h"
-#include "../others/define.h"
-#include "../others/IO.h"
-#include "../others/redis.hpp"
-#include <vector>
-
-#include <iostream>
-using json = nlohmann::json;
-using namespace std;
+#include "fileprocess.h"
 
 // 向客户端发送文件列表
 void sendfilelist_server(int fd, string buf)
@@ -22,7 +10,7 @@ void sendfilelist_server(int fd, string buf)
     printf("--- %s 用户查看 %s 发来的文件 ---\n", file.id.c_str(), file.opponame.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     vector<string> files_Vector; // 放文件的容器
 
@@ -79,7 +67,7 @@ void sendfile_server(int fd, string buf)
     printf("--- %s 用户接收 %s 发来的文件 ---\n", file.id.c_str(), file.opponame.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     // string file_path = "/home/zhangminrui/桌面/chatroom/file/" + file.filename;
     string file_path = "../file/" + file.filename;
@@ -157,7 +145,7 @@ void recvfile_server(int fd, string buf)
     cout << file.filename << endl;
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     file.filepath = "../file/"+file.filename;
 
@@ -240,5 +228,3 @@ void recvfile_server(int fd, string buf)
     }
     return;
 }
-
-#endif

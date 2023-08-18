@@ -5,7 +5,7 @@
 #include "../others/data.h"
 #include "../others/define.h"
 #include "../others/IO.h"
-#include "../others/redis.hpp"
+#include "../others/redis.h"
 #include <vector>
 
 #include <iostream>
@@ -21,7 +21,7 @@ void showunreadnotice_server(int fd, string buf)
     printf("--- %s 用户显示离线未读消息 ---\n", friend_.id.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = friend_.id + ":unreadnotice";
     int len = redis.scard(key);
@@ -59,7 +59,7 @@ void logout_server(int fd, string buf)
     printf("--- %s 用户将要退出登录 ---\n", id.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string userjson_string;
     userjson_string = redis.gethash("userinfo", id);
@@ -95,7 +95,7 @@ void addfriend_server(int fd, string buf)
     printf("--- %s 用户将向 %s 发送好友申请 ---\n", friend_.id.c_str(), friend_.oppoid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     // 构造好友列表
     string key = friend_.id + ":friends";            // id+friends作为键，值就是id用户的好友们
@@ -174,7 +174,7 @@ void friendapplylist_server(int fd, string buf)
     printf("--- %s 用户查看好友申请列表 ---\n", friend_.id.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = friend_.id + ":friends_apply";
     int len = redis.scard(key);
@@ -217,7 +217,7 @@ void friendapplyedit_server(int fd, string buf)
     cout << state << endl;
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = friend_.id + ":friends_apply";
 
@@ -289,7 +289,7 @@ void friendinfo_server(int fd, string buf)
     printf("--- %s 用户查看在线好友列表 ---\n", friend_.id.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = friend_.id + ":friends";
     int len = redis.scard(key);
@@ -339,7 +339,7 @@ void addblack_server(int fd, string buf)
     printf("--- %s 用户将要屏蔽好友 ---\n", friend_.id.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = friend_.id + ":bfriends";
     string key_ = friend_.id + ":friends";
@@ -382,7 +382,7 @@ void delfriend_server(int fd, string buf)
     printf("--- %s 用户将要删除好友 ---\n", friend_.id.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = friend_.id + ":friends";
     string key_ = friend_.oppoid + ":friends";
@@ -420,7 +420,7 @@ void blackfriendlist_server(int fd, string buf)
     printf("--- %s 用户查看屏蔽好友列表 ---\n", friend_.id.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = friend_.id + ":bfriends";
     int len = redis.scard(key);
@@ -464,7 +464,7 @@ void blackfriendedit_server(int fd, string buf)
     cout << name << endl;
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = friend_.id + ":bfriends";
 
@@ -517,7 +517,7 @@ void historychat_server(int fd, string buf)
     printf("--- %s 用户查看与 %s 的聊天记录 ---\n", friend_.id.c_str(), friend_.opponame.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key;
     string key_ = friend_.id + ":friends";
@@ -584,7 +584,7 @@ void chatfriend_server(int fd, string buf)
     cout << friend_.msg << endl;
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
     nlohmann::json json_;
 
     friend_.oppoid = redis.gethash("name_id", friend_.opponame);
@@ -669,7 +669,7 @@ void personalinfo_server(int fd, string buf)
     printf("--- %s 用户查看个人信息 ---\n", friend_.id.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string userjson_string;
     userjson_string = redis.gethash("userinfo", friend_.id);

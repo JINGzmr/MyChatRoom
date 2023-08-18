@@ -5,7 +5,7 @@
 #include "../others/data.h"
 #include "../others/define.h"
 #include "../others/IO.h"
-#include "../others/redis.hpp"
+#include "../others/redis.h"
 #include <vector>
 
 #include <iostream>
@@ -23,7 +23,7 @@ void addmin_server(int fd, string buf)
     printf("--- %s 用户将要添加 %s 为管理员 ---\n", group.userid.c_str(), group.oppoid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     if (redis.hashexists("userinfo", group.oppoid) != 1) // 用户不存在
     {
@@ -110,7 +110,7 @@ void deladmin_server(int fd, string buf)
     printf("--- %s 用户将要删除 %s 的管理员 ---\n", group.userid.c_str(), group.oppoid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     if (redis.hashexists("userinfo", group.oppoid) != 1) // 用户不存在
     {
@@ -196,7 +196,7 @@ void checkapplylist_server(int fd, string buf)
     printf("--- %s 用户查看 %s 群的加群申请表 ---\n", group.userid.c_str(), group.groupid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     vector<string> groupapply_Vector;
 
@@ -268,7 +268,7 @@ void agreeapply_server(int fd, string buf)
     cout << state << endl;
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     string key = group.groupid + ":groupapply";
 
@@ -328,7 +328,7 @@ void delgroupnum_server(int fd, string buf)
     printf("--- %s 用户将要把 %s 从 %s 群中踢出  ---\n", group.userid.c_str(), group.oppoid.c_str(), group.groupid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     if (redis.hashexists("userinfo", group.oppoid) != 1) // 用户不存在
     {
@@ -450,7 +450,7 @@ void delgroup_server(int fd, string buf)
     printf("--- %s 用户将要解散 %s 群 ---\n", group.userid.c_str(), group.groupid.c_str());
 
     Redis redis;
-    redis.connect();
+    redis.connect("127.0.0.1", 6379, "");
 
     if (redis.hashexists("groupid_name", group.groupid) == 1 && redis.sismember(group.userid + ":group", group.groupid) == 1) // 存在该群且已加入
     {

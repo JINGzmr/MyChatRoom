@@ -1,35 +1,4 @@
-// 客户端的聊天室界面，以及处理好友相关事件
-#ifndef PERSONALMENU_HPP
-#define PERSONALMENU_HPP
-
-#include "../others/data.h"
-#include "../others/define.h"
-#include "../others/head.h"
-#include "../others/IO.h"
-#include "menu.hpp"
-#include "../others/threadwork.hpp"
-#include "groupmenu.hpp"
-#include "filemenu.hpp"
-
-#include <iostream>
-using json = nlohmann::json;
-using namespace std;
-
-void showunreadnotice_client(int client_socket, string id, Queue<string> &RecvQue);
-void logout_client(int client_socket, string username);
-void addfriend_client(int client_socket, string username, Queue<string> &RecvQue);
-void friendapplylist_client(int client_socket, string id, Queue<string> &RecvQue);
-void friendapplyedit_client(int client_socket, string id, Queue<string> &RecvQue);
-string friendinfo_client(int client_socket, string id, Queue<string> &RecvQue, int fl);
-void addblack_client(int client_socket, string id, Queue<string> &RecvQue);
-void delfriend_client(int client_socket, string id, Queue<string> &RecvQue);
-string blackfriendlist_client(int client_socket, string id, Queue<string> &RecvQue, int fl);
-void blackfriendedit_client(int client_socket, string id, Queue<string> &RecvQue);
-string historychat_client(int client_socket, string id, Queue<string> &RecvQue, int fl);
-void chatfriend_client(int client_socket, string id, Queue<string> &RecvQue);
-void personalinfo_client(int client_socket, string id, Queue<string> &RecvQue);
-void group_client(int client_socket, string id, Queue<string> &RecvQue);
-void file_client(int client_socket, string id, Queue<string> &RecvQue);
+#include "personalmenu.h"
 
 void personalmenuUI(void)
 {
@@ -897,5 +866,3 @@ void file_client(int client_socket, string id, Queue<string> &RecvQue)
     system("clear");
     return;
 }
-
-#endif
