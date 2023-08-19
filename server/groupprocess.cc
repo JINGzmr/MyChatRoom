@@ -464,7 +464,7 @@ void groupchat_server(int fd, string buf)
             {
                 group.type = NORMAL;
             }
-                
+
             // 发送状态和信息类型
             json_ = {
                 {"type", group.type},
@@ -504,4 +504,3 @@ void groupchat_server(int fd, string buf)
     }
     cout << "here" << endl;
 }
-

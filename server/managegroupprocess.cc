@@ -294,7 +294,7 @@ void agreeapply_server(int fd, string buf)
 
             group.state = SUCCESS;
         }
-        else if(state == "2")
+        else if (state == "2")
         {
             cout << "已拒绝" << endl;
             redis.sremvalue(key, group.oppoid); // 从申请列表中移除
@@ -478,4 +478,3 @@ void delgroup_server(int fd, string buf)
     SendMsg sendmsg;
     sendmsg.SendMsg_client(fd, json_string);
 }
-

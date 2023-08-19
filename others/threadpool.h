@@ -67,8 +67,8 @@ private:
     // 工作的线程的任务函数
     static void *worker(void *arg);
 
-// inline、static、extern .h need ,.cc not need
-// const .h.cc all need
+    // inline、static、extern .h need ,.cc not need
+    // const .h.cc all need
 
 private:
     TaskQueue *m_TaskQ;        // 任务队列

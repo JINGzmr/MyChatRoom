@@ -74,7 +74,7 @@ void login_client(int client_socket)
     string sendJson_client_string = sendJson_client.dump();
     SendMsg sendmsg;
     sendmsg.SendMsg_client(client_socket, sendJson_client_string);
- 
+
     // 接收数据
     int state_;
     RecvMsg recvmsg;
@@ -210,13 +210,13 @@ void out_client(int client_socket)
 {
     // 序列化，发送数据（不用把结构体的所有成员都序列化）
     nlohmann::json sendJson_client = {
-        {"flag",OUT},
+        {"flag", OUT},
     };
     string sendJson_client_string = sendJson_client.dump();
     SendMsg sendmsg;
     sendmsg.SendMsg_client(client_socket, sendJson_client_string);
 
-    cout << "退出成功！"<< endl;
+    cout << "退出成功！" << endl;
 }
 
 void findpassword_client(int client_socket)
