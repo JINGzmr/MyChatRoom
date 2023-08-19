@@ -44,3 +44,4 @@ add_executable(server
 find_library(HIREDIS_LIBRARY NAMES hiredis)
 target_link_libraries(server ${HIREDIS_LIBRARY})
 target_link_libraries(client ${HIREDIS_LIBRARY})
+
