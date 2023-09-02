@@ -1,7 +1,7 @@
 #include "../others/IO.h"
 #include "head.h"
 #include "../others/define.h"
-//************——————》后期要改
+//************——————>后期要改
 int SendMsg::writen(int fd, char *msg, int size)
 {
   char *buf = msg;
