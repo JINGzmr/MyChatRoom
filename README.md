@@ -13,3 +13,5 @@ make
 ```
 
 这样就可以运行ChatRoom聊天室应用程序了。
+
+> 注：Redis数据库可视化辅助工具：[RedisInsight](https://redis.io/download/)
