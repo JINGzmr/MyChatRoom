@@ -1,4 +1,9 @@
 # 项目构建及运行
+0. 前置安装：
+```bash
+hiredis
+nlohmann-json
+```
 1. 在项目`MyChatroom`目录下打开终端，执行以下命令进行构建：
 ```bash
 mkdir build
